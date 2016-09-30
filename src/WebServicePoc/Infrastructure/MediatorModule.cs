@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using ApplicationServices.Projects;
 
 using Autofac;
+using Autofac.Core;
 using Autofac.Features.Variance;
 
 using MediatR;
 
-namespace WebServicePoc
+namespace WebServicePoc.Infrastructure
 {
     public class MediatorModule : Module
     {
@@ -15,7 +17,21 @@ namespace WebServicePoc
         {
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsImplementedInterfaces();
-            builder.RegisterAssemblyTypes(typeof(GetProjectsRequest).Assembly).AsImplementedInterfaces();
+/*
+            builder.RegisterAssemblyTypes(typeof(GetProjectsRequest).Assembly)
+                .AsImplementedInterfaces();
+*/
+
+
+            builder.RegisterAssemblyTypes(typeof(GetProjectsRequestHandler).Assembly)
+                .As(type => type.GetInterfaces()
+                               .Where(interfaceType => TypeExtensions.IsClosedTypeOf(interfaceType, typeof(IAsyncRequestHandler<,>)))
+                               .Select(interfaceType => new KeyedService("AsyncRequestHandler", interfaceType)));
+
+            builder.RegisterGenericDecorator(
+                typeof(AsyncValidationRequestHandler<,>),
+                typeof(IAsyncRequestHandler<,>),
+                "AsyncRequestHandler");
 
             builder.Register<SingleInstanceFactory>(
                 ctx =>

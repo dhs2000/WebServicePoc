@@ -8,6 +8,7 @@
         "bin/Debug/ApplicationServices.dll": {}
       },
       "runtime": {
+        "../packages/FluentValidation.6.2.1.0/lib/Net45/FluentValidation.dll": {},
         "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
         "bin/Debug/ApplicationServices.dll": {}
       },

@@ -1,0 +1,30 @@
+﻿using System;
+
+using Autofac;
+
+using FluentValidation;
+
+namespace WebServicePoc.Infrastructure
+{
+    public class AutofacValidatorFactory : ValidatorFactoryBase
+    {
+        private readonly IComponentContext context;
+
+        public AutofacValidatorFactory(IComponentContext context)
+        {
+            this.context = context;
+        }
+
+        public override IValidator CreateInstance(Type validatorType)
+        {
+            object instance;
+            if (this.context.TryResolve(validatorType, out instance))
+            {
+                var validator = instance as IValidator;
+                return validator;
+            }
+
+            return null;
+        }
+    }
+}

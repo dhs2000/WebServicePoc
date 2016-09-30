@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using ApplicationServices.Projects;
+
+using FluentValidation;
 
 using MediatR;
 
@@ -47,9 +51,17 @@ namespace WebServicePoc.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody] CreateProjectCommand createProject)
+        public async Task<ActionResult> Post([FromBody] CreateProjectCommand createProject)
         {
-            await this.mediator.SendAsync(new CreateProjectCommand("111", "P3"));
+            try
+            {
+                await this.mediator.SendAsync(createProject);
+                return this.Ok();
+            }
+            catch (ValidationException ex)
+            {
+                return this.BadRequest(ex.Errors);
+            }
         }
 
         // PUT api/values/5

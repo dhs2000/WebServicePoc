@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using WebServicePoc.Infrastructure;
+
 namespace WebServicePoc
 {
     public class Startup
@@ -42,9 +44,11 @@ namespace WebServicePoc
 
             // Add Autofac
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule<MediatorModule>();
+            containerBuilder.RegisterModule<MediatorModule>(); 
+            containerBuilder.RegisterModule<FluentValidationModule>();
             containerBuilder.Populate(services);
             IContainer container = containerBuilder.Build();
+
             return new AutofacServiceProvider(container);
         }
     }
