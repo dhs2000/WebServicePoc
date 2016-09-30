@@ -1128,6 +1128,15 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "StyleCop.Error.MSBuild/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "StyleCop.MSBuild": "4.7.49"
+        }
+      },
+      "StyleCop.MSBuild/4.7.54": {
+        "type": "package"
+      },
       "System.AppContext/4.1.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -2790,6 +2799,45 @@
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "tools/install.ps1"
+      ]
+    },
+    "StyleCop.Error.MSBuild/1.0.0": {
+      "sha512": "yuJMyzsNKLcA6dSxW6zS6I70uAyLoOCzFIb/PEkhQiFdfCGH+0hxhMbN2f1lFb077I5SnbArBvEPuJNPuRzfng==",
+      "type": "package",
+      "path": "StyleCop.Error.MSBuild/1.0.0",
+      "files": [
+        "StyleCop.Error.MSBuild.1.0.0.nupkg.sha512",
+        "StyleCop.Error.MSBuild.nuspec",
+        "build/StyleCop.Error.MSBuild.Targets",
+        "license.txt"
+      ]
+    },
+    "StyleCop.MSBuild/4.7.54": {
+      "sha512": "HgkoF6gttzIu6bWCbME6LL/HfkLusQWM9W/0tUD78WpY8G2b1uu0666N7/RVdiyt7uSGGKnH7OBoGgS6svyGMw==",
+      "type": "package",
+      "path": "StyleCop.MSBuild/4.7.54",
+      "files": [
+        "StyleCop.MSBuild.4.7.54.nupkg.sha512",
+        "StyleCop.MSBuild.nuspec",
+        "build/StyleCop.MSBuild.Targets",
+        "license.txt",
+        "tools/CustomDictionary.en-GB.xml",
+        "tools/CustomDictionary.en-US.xml",
+        "tools/CustomDictionary.xml",
+        "tools/Settings.StyleCop",
+        "tools/StyleCop.CSharp.Rules.dll",
+        "tools/StyleCop.CSharp.dll",
+        "tools/StyleCop.dll",
+        "tools/StyleCopSettingsEditor.exe",
+        "tools/de-DE/StyleCop.CSharp.Rules.resources.dll",
+        "tools/en-GB/StyleCop.CSharp.Rules.resources.dll",
+        "tools/es-MX/StyleCop.CSharp.Rules.resources.dll",
+        "tools/fr-FR/StyleCop.CSharp.Rules.resources.dll",
+        "tools/mssp7en.dll",
+        "tools/mssp7en.lex",
+        "tools/pl-PL/StyleCop.CSharp.Rules.resources.dll",
+        "tools/pt-BR/StyleCop.CSharp.Rules.resources.dll",
+        "tools/ru-RU/StyleCop.CSharp.Rules.resources.dll"
       ]
     },
     "System.AppContext/4.1.0": {
@@ -5487,7 +5535,9 @@
       "Microsoft.Extensions.Logging >= 1.0.0",
       "Microsoft.Extensions.Logging.Console >= 1.0.0",
       "Microsoft.Extensions.Logging.Debug >= 1.0.0",
-      "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0"
+      "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
+      "StyleCop.Error.MSBuild >= 1.0.0",
+      "StyleCop.MSBuild >= 4.7.54"
     ],
     ".NETFramework,Version=v4.6.1": []
   },
