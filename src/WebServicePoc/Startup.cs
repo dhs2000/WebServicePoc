@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -18,15 +15,24 @@ namespace WebServicePoc
     {
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            IConfigurationBuilder builder =
+                new ConfigurationBuilder().SetBasePath(env.ContentRootPath)
+                    .AddJsonFile("appsettings.json", true, true)
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                    .AddEnvironmentVariables();
+            this.Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            app.UseMvc();
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -38,17 +44,8 @@ namespace WebServicePoc
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule<MediatorModule>();
             containerBuilder.Populate(services);
-            var container = containerBuilder.Build();
+            IContainer container = containerBuilder.Build();
             return new AutofacServiceProvider(container);
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
-            app.UseMvc();
         }
     }
 }

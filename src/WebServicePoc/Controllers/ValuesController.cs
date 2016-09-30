@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using ApplicationServices.Projects;
@@ -26,6 +25,12 @@ namespace WebServicePoc.Controllers
             this.mediator = mediator;
         }
 
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
+
         // GET api/values
         [HttpGet]
         public async Task<IEnumerable<Project>> Get()
@@ -49,13 +54,7 @@ namespace WebServicePoc.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Put(int id, [FromBody] string value)
         {
         }
     }

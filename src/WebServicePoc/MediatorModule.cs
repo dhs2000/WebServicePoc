@@ -16,17 +16,19 @@ namespace WebServicePoc
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(typeof(GetProjectsRequest).Assembly).AsImplementedInterfaces();
-            
-            builder.Register<SingleInstanceFactory>(ctx =>
-            {
-                var c = ctx.Resolve<IComponentContext>();
-                return t => c.Resolve(t);
-            });
-            builder.Register<MultiInstanceFactory>(ctx =>
-            {
-                var c = ctx.Resolve<IComponentContext>();
-                return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
-            });
+
+            builder.Register<SingleInstanceFactory>(
+                ctx =>
+                    {
+                        var c = ctx.Resolve<IComponentContext>();
+                        return t => c.Resolve(t);
+                    });
+            builder.Register<MultiInstanceFactory>(
+                ctx =>
+                    {
+                        var c = ctx.Resolve<IComponentContext>();
+                        return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
+                    });
         }
     }
 }
