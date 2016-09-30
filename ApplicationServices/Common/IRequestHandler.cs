@@ -2,7 +2,7 @@
 
 namespace ApplicationServices.Common
 {
-    public interface IRequestHandler<TResult, in TQuery> where TQuery : IQuery
+    public interface IRequestHandler<in TQuery, TResult> where TQuery : IQuery
     {
         Task<TResult> Handle(TQuery request);
     }

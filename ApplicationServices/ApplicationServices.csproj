@@ -46,6 +46,11 @@
     <Compile Include="Common\ICommand.cs" />
     <Compile Include="Common\ICommandHandler.cs" />
     <Compile Include="Common\IQuery.cs" />
+    <Compile Include="Projects\CreateProjectCommand.cs" />
+    <Compile Include="Projects\GetProjectsRequestHandler.cs" />
+    <Compile Include="Projects\Project.cs" />
+    <Compile Include="Projects\GetProjectsRequest.cs" />
+    <Compile Include="Projects\GetProjectsResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
