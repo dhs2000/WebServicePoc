@@ -18,10 +18,10 @@ namespace WebServicePoc.Infrastructure
         public override IValidator CreateInstance(Type validatorType)
         {
             object instance;
+
             if (this.context.TryResolve(validatorType, out instance))
             {
-                var validator = instance as IValidator;
-                return validator;
+                return (IValidator)instance;
             }
 
             return null;
