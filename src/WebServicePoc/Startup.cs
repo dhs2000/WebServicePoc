@@ -36,7 +36,7 @@ namespace WebServicePoc
 
             // Add Autofac
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule<DefaultModule>();
+            containerBuilder.RegisterModule<MediatorModule>();
             containerBuilder.Populate(services);
             var container = containerBuilder.Build();
             return new AutofacServiceProvider(container);

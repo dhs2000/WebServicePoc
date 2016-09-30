@@ -9,7 +9,7 @@ using MediatR;
 
 namespace WebServicePoc
 {
-    public class DefaultModule : Module
+    public class MediatorModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
