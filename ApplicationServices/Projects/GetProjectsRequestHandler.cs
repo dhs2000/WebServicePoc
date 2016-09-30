@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using ApplicationServices.Common;
+using MediatR;
 
 namespace ApplicationServices.Projects
 {
-    public class GetProjectsRequestHandler : IRequestHandler<GetProjectsRequest, GetProjectsResponse>
+    public class GetProjectsRequestHandler : IAsyncRequestHandler<GetProjectsRequest, GetProjectsResponse>
     {
         public Task<GetProjectsResponse> Handle(GetProjectsRequest request)
         {

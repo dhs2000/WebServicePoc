@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MediatR, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.2.1.0\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,11 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IRequestHandler.cs" />
-    <Compile Include="Common\ICommand.cs" />
-    <Compile Include="Common\ICommandHandler.cs" />
-    <Compile Include="Common\IQuery.cs" />
     <Compile Include="Projects\CreateProjectCommand.cs" />
+    <Compile Include="Projects\CreateProjectCommandHandler.cs" />
     <Compile Include="Projects\GetProjectsRequestHandler.cs" />
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\GetProjectsRequest.cs" />

@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "exports": {
+    "ApplicationServices/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6.1",
+      "compile": {
+        "bin/Debug/ApplicationServices.dll": {}
+      },
+      "runtime": {
+        "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
+        "bin/Debug/ApplicationServices.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/ApplicationServices.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}

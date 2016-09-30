@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using ApplicationServices.Projects;
+
+using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebServicePoc.Controllers
@@ -9,11 +14,23 @@ namespace WebServicePoc.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IMediator mediator;
+
+        public ValuesController(IMediator mediator)
+        {
+            if (mediator == null)
+            {
+                throw new ArgumentNullException(nameof(mediator));
+            }
+
+            this.mediator = mediator;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Project>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return (await this.mediator.SendAsync(new GetProjectsRequest())).Items;
         }
 
         // GET api/values/5
@@ -25,8 +42,9 @@ namespace WebServicePoc.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task Post([FromBody] CreateProjectCommand createProject)
         {
+            await this.mediator.SendAsync(new CreateProjectCommand("111", "P3"));
         }
 
         // PUT api/values/5

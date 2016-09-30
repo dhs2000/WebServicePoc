@@ -1,8 +1,8 @@
-﻿using ApplicationServices.Common;
+﻿using MediatR;
 
 namespace ApplicationServices.Projects
 {
-    public class CreateProjectCommand : ICommand
+    public class CreateProjectCommand : IAsyncRequest
     {
         public CreateProjectCommand(string id, string name)
         {
@@ -17,5 +17,10 @@ namespace ApplicationServices.Projects
         public string Id { get; private set; }
 
         public string Name { get; private set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(this.Id)}: {this.Id}, {nameof(this.Name)}: {this.Name}";
+        }
     }
 }

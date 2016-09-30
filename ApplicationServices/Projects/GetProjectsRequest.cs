@@ -1,8 +1,8 @@
-﻿using ApplicationServices.Common;
+﻿using MediatR;
 
 namespace ApplicationServices.Projects
 {
-    public class GetProjectsRequest : IQuery
+    public class GetProjectsRequest : IAsyncRequest<GetProjectsResponse>
     {
         public string Id { get; set; }
     }
