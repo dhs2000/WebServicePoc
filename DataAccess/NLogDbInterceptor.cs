@@ -1,5 +1,6 @@
 ﻿using System.Data.Common;
 using System.Data.Entity.Infrastructure.Interception;
+using System.Diagnostics;
 
 using NLog;
 
@@ -44,6 +45,7 @@ namespace DataAccess
             if (Log.IsDebugEnabled)
             {
                 Log.Debug(command);
+                Debug.WriteLine(command);
             }
         }
     }

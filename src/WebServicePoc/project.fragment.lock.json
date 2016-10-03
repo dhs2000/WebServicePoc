@@ -8,12 +8,51 @@
         "bin/Debug/ApplicationServices.dll": {}
       },
       "runtime": {
+        "../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.dll": {},
+        "../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll": {},
         "../packages/FluentValidation.6.2.1.0/lib/Net45/FluentValidation.dll": {},
         "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
         "bin/Debug/ApplicationServices.dll": {}
       },
       "contentFiles": {
         "bin/Debug/ApplicationServices.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    },
+    "DataAccess/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6.1",
+      "compile": {
+        "bin/Debug/DataAccess.dll": {}
+      },
+      "runtime": {
+        "../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.dll": {},
+        "../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll": {},
+        "../packages/NLog.4.3.9/lib/net45/NLog.dll": {},
+        "bin/Debug/DataAccess.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/DataAccess.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    },
+    "DomainModel/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6.1",
+      "compile": {
+        "bin/Debug/DomainModel.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/DomainModel.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/DomainModel.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

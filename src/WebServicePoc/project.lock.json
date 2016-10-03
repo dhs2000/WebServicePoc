@@ -2130,6 +2130,15 @@
       },
       "ApplicationServices/1.0.0": {
         "type": "project"
+      },
+      "DataAccess/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DomainModel": "1.0.0"
+        }
+      },
+      "DomainModel/1.0.0": {
+        "type": "project"
       }
     }
   },
@@ -6682,6 +6691,14 @@
     "ApplicationServices/1.0.0": {
       "type": "project",
       "msbuildProject": "../../ApplicationServices/ApplicationServices.csproj"
+    },
+    "DataAccess/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../../DataAccess/DataAccess.csproj"
+    },
+    "DomainModel/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../../DomainModel/DomainModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6707,7 +6724,9 @@
       "StyleCop.MSBuild >= 4.7.54"
     ],
     ".NETFramework,Version=v4.6.1": [
-      "ApplicationServices"
+      "ApplicationServices",
+      "DataAccess",
+      "DomainModel"
     ]
   },
   "tools": {

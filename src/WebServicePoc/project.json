@@ -30,6 +30,12 @@
       "dependencies": {
         "ApplicationServices": {
           "target": "project"
+        },
+        "DataAccess": {
+          "target": "project"
+        },
+        "DomainModel": {
+          "target": "project"
         }
       }
     }
