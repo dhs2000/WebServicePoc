@@ -4,5 +4,5 @@
     [ProjectId] UNIQUEIDENTIFIER NOT NULL, 
     [Name] NVARCHAR(255) NOT NULL, 
     [FileId] UNIQUEIDENTIFIER NULL, 
-    [RowVersion] ROWVERSION NOT NULL
+    [RowVersion] ROWVERSION NOT NULL	
 )
