@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Interception;
 
 using DomainModel;
 
@@ -6,10 +7,15 @@ namespace DataAccess
 {
     public class DatabaseContext : DbContext
     {
+        static DatabaseContext()
+        {
+            DbInterception.Add(new NLogDbInterceptor());
+        }
+
         public DatabaseContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
-            Database.SetInitializer<DatabaseContext>(null);
+            Database.SetInitializer<DatabaseContext>(null);            
         }
 
         public DbSet<Project> Projects { get; set; }
