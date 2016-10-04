@@ -1,7 +1,5 @@
 ﻿using System;
 
-using DataAccess;
-
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebServicePoc.Infrastructure
@@ -12,7 +10,7 @@ namespace WebServicePoc.Infrastructure
 
         public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
         {
-            return new DatabaseTransactionActionFilter((DatabaseContext)serviceProvider.GetService(typeof(DatabaseContext)));
+            return new DatabaseTransactionActionFilter();
         }
     }
 }

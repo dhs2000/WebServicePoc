@@ -10,26 +10,26 @@ namespace ApplicationServices.Projects
 {
     public class CreateProjectCommandHandler : IAsyncRequestHandler<CreateProjectCommand, Unit>
     {
-        private readonly DatabaseContext databaseContext;
+        private readonly IProjectRepository projectRepository;
 
-        public CreateProjectCommandHandler(DatabaseContext databaseContext)
+        public CreateProjectCommandHandler(IProjectRepository projectRepository)
         {
-            if (databaseContext == null)
+            if (projectRepository == null)
             {
-                throw new ArgumentNullException(nameof(databaseContext));
+                throw new ArgumentNullException(nameof(projectRepository));
             }
 
-            this.databaseContext = databaseContext;
+            this.projectRepository = projectRepository;
         }
 
         public Task<Unit> Handle(CreateProjectCommand message)
         {
-            Debug.WriteLine("adadadadadadadad");
             Debug.WriteLine(message);
 
-            var project = new DomainModel.Project(Guid.NewGuid(), "Project 1");
+            var project = new DomainModel.Project(Guid.NewGuid(), message.Name);
             project.AddItem(Guid.NewGuid(), "Item 1");
-            this.databaseContext.Projects.Add(project);
+
+            this.projectRepository.Save(project);
 
             return Task.FromResult(Unit.Value);
         }

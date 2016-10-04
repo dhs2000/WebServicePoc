@@ -2,40 +2,27 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-using DataAccess;
-
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebServicePoc.Infrastructure
 {
     public class DatabaseTransactionActionFilter : IAsyncActionFilter
     {
-        private readonly DatabaseContext databaseContext;
-
-        public DatabaseTransactionActionFilter(DatabaseContext databaseContext)
-        {
-            if (databaseContext == null)
-            {
-                throw new ArgumentNullException(nameof(databaseContext));
-            }
-
-            this.databaseContext = databaseContext;
-        }
 
         public async Task OnActionExecutionAsync(
             ActionExecutingContext context,
             ActionExecutionDelegate next)
         {
             Debug.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            this.databaseContext.BeginTransaction();
             try
             {
+                // TODO: Stat tr
                 await next();
-                this.databaseContext.CloseTransaction();
+                // TODO: Commit tr
             }
             catch (Exception e)
             {
-                this.databaseContext.CloseTransaction(e);
+                // TODO: Rollback tr
                 throw;
             }
             finally

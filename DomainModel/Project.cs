@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DomainModel
 {
     public class Project
     {
-        private readonly ICollection<ProjectItem> items = new List<ProjectItem>();
+        private readonly List<ProjectItem> items = new List<ProjectItem>();
 
         private Project()
         {
@@ -24,15 +25,7 @@ namespace DomainModel
 
         public int RootRevision { get; private set; }
 
-        public byte[] RowVersion { get; private set; }
-
-        public ICollection<ProjectItem> Items
-        {
-            get
-            {
-                return this.items;
-            }
-        }
+        public IReadOnlyCollection<ProjectItem> Items => this.items;
 
         public void AddItem(Guid id, string name)
         {

@@ -4,8 +4,6 @@ namespace DomainModel
 {
     public class ProjectItem
     {
-        private Project project;
-
         private ProjectItem()
         {
         }
@@ -24,23 +22,13 @@ namespace DomainModel
 
             this.Id = id;
             this.Name = name;
-            // this.Project = project;
+            this.Project = project;
         }
 
         public Guid Id { get; private set; }
 
         public string Name { get; private set; }
 
-        public Project Project
-        {
-            get
-            {
-                return this.project;
-            }
-            private set
-            {
-                this.project = value;
-            }
-        }
+        public Project Project { get; private set; }
     }
 }
