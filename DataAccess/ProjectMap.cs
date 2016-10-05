@@ -8,12 +8,12 @@ namespace DataAccess
     {
         public ProjectMap()
         {
-            this.Id(i => i.Id).Not.Nullable();
+            this.Id(i => i.Id).Not.Nullable().GeneratedBy.Assigned();
 
             this.Map(i => i.Name).Not.Nullable().Length(255);
 
             this.HasMany<ProjectItem>(i => i.Items)
-                .Cascade.AllDeleteOrphan()
+                .Cascade.All()
                 .Access.CamelCaseField()
                 .NotFound.Exception()
                 .Fetch.Join()

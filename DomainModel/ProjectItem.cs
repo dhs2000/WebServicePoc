@@ -30,5 +30,10 @@ namespace DomainModel
         public string Name { get; private set; }
 
         public Project Project { get; private set; }
+
+        public void AppendToName(string itemsufix)
+        {
+            this.Name += itemsufix;
+        }
     }
 }

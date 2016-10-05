@@ -8,6 +8,8 @@ namespace DomainModel
     {
         private readonly IList<ProjectItem> items = new List<ProjectItem>();
 
+        private string name;
+
         private Project()
         {
         }
@@ -21,15 +23,30 @@ namespace DomainModel
 
         public Guid Id { get; private set; }
 
-        public string Name { get; private set; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+            private set
+            {
+                this.name = value;
+            }
+        }
 
         public int RootRevision { get; private set; }
 
-        public IReadOnlyCollection<ProjectItem> Items => new ReadOnlyCollection<ProjectItem>(this.items);
+        public IReadOnlyList<ProjectItem> Items => new ReadOnlyCollection<ProjectItem>(this.items);
 
         public void AddItem(Guid id, string name)
         {
             this.items.Add(new ProjectItem(id, name, this));
+        }
+
+        public void UpdateProjectName(string newName)
+        {
+            this.Name = newName;
         }
     }
 }
