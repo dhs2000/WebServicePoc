@@ -34,7 +34,7 @@ namespace WebServicePoc.Infrastructure
                 await next();
                 this.session.Transaction.Commit();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 this.session.Transaction.Rollback();
                 throw;

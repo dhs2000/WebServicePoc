@@ -2,6 +2,8 @@
 
 using Microsoft.AspNetCore.Mvc.Filters;
 
+using NHibernate;
+
 namespace WebServicePoc.Infrastructure
 {
     public class DatabaseTransactionActionFilterFactory : IFilterFactory
@@ -10,7 +12,7 @@ namespace WebServicePoc.Infrastructure
 
         public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
         {
-            return new DatabaseTransactionActionFilter();
+            return new DatabaseTransactionActionFilter((ISession)serviceProvider.GetService(typeof(ISession)));
         }
     }
 }

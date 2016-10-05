@@ -40,7 +40,6 @@ namespace DataAccess.Tests
             configuration.SetProperty("nhibernate-logger", "NHibernate.NLogLoggerFactory, NHibernate.NLog");
             configuration.SetProperty("show_sql", "true");
 
-
             ISessionFactory sessionFactory = configuration.BuildSessionFactory();
 
             this.session = sessionFactory.OpenSession();
