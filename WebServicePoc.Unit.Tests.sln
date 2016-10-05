@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests", "DataAccess.Tests\DataAccess.Tests.csproj", "{F3105F86-90AE-4CC4-880E-32DA22C1F437}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{EF9BE9AF-AC0B-4134-B7B0-070412B4ABE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,12 @@ Global
 		{F3105F86-90AE-4CC4-880E-32DA22C1F437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3105F86-90AE-4CC4-880E-32DA22C1F437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3105F86-90AE-4CC4-880E-32DA22C1F437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9BE9AF-AC0B-4134-B7B0-070412B4ABE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9BE9AF-AC0B-4134-B7B0-070412B4ABE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9BE9AF-AC0B-4134-B7B0-070412B4ABE9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EF9BE9AF-AC0B-4134-B7B0-070412B4ABE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9BE9AF-AC0B-4134-B7B0-070412B4ABE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9BE9AF-AC0B-4134-B7B0-070412B4ABE9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

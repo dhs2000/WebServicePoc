@@ -11,7 +11,6 @@ using FluentNHibernate.Testing;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using NHibernate.Util;
 
 using NLog;
 
@@ -27,53 +26,6 @@ namespace DataAccess.Tests
         private ISession session;
 
         private ISessionFactory sessionFactory;
-
-        [Test]
-        public void ProjectWithSubItemsTest()
-        {
-            Guid id = Guid.NewGuid();        
-
-            const string NewName = "Project New Name";
-
-            using (ITransaction transaction = this.session.BeginTransaction())
-            {
-                var project = new Project(id, "Project 1");
-                project.AddItem(Guid.NewGuid(), "Item1");
-                project.AddItem(Guid.NewGuid(), "Item2");
-                this.session.Save(project);
-                transaction.Commit();
-            }
-
-            this.session.Clear();
-
-            using (ITransaction transaction = this.session.BeginTransaction())
-            {
-                var project = this.session.Get<Project>(id);
-                project.AddItem(Guid.NewGuid(), "Item3");
-                project.Items.Count.Should().Be(3);
-                transaction.Commit();
-            }
-
-            this.session.Clear();
-
-            using (ITransaction transaction = this.session.BeginTransaction())
-            {
-                var project = this.session.Get<Project>(id);
-                ProjectItem first = project.Items[0];
-                first.AppendToName("ItemSufix");
-                transaction.Commit();
-            }
-
-            this.session.Clear();
-
-            using (ITransaction transaction = this.session.BeginTransaction())
-            {
-                var project = this.session.Get<Project>(id);                
-                project.Items.Count.Should().Be(3);
-                project.Items[0].Name.Should().Be("Item1ItemSufix");
-                transaction.Commit();
-            }
-        }
 
         [Test]
         public void DetectChangesTest()
@@ -106,10 +58,57 @@ namespace DataAccess.Tests
         {
             var project = new Project(Guid.NewGuid(), "Project 1");
 
-            new PersistenceSpecification<Project>(this.session)
-                .CheckProperty(c => c.Name, "pppp")
+            new PersistenceSpecification<Project>(this.session).CheckProperty(c => c.Name, "pppp")
                 .CheckProperty(c => c.RootRevision, 23)
                 .VerifyTheMappings(project);
+        }
+
+        [Test]
+        public void ProjectWithSubItemsTest()
+        {
+            Guid id = Guid.NewGuid();
+
+            using (ISession session1 = this.sessionFactory.OpenSession())
+            {
+                using (ITransaction transaction = session1.BeginTransaction())
+                {
+                    var project = new Project(id, "Project 1");
+                    project.AddItem(Guid.NewGuid(), "Item1");
+                    project.AddItem(Guid.NewGuid(), "Item2");
+                    session1.Save(project);
+                    transaction.Commit();
+                }
+            }
+
+            this.session.Clear();
+
+            using (ITransaction transaction = this.session.BeginTransaction())
+            {
+                var project = this.session.Get<Project>(id);
+                project.AddItem(Guid.NewGuid(), "Item3");
+                project.Items.Count.Should().Be(3);
+                transaction.Commit();
+            }
+
+            this.session.Clear();
+
+            using (ITransaction transaction = this.session.BeginTransaction())
+            {
+                var project = this.session.Get<Project>(id);
+                ProjectItem first = project.Items[0];
+                first.AppendToName("ItemSufix");
+                transaction.Commit();
+            }
+
+            this.session.Clear();
+
+            using (ITransaction transaction = this.session.BeginTransaction())
+            {
+                var project = this.session.Get<Project>(id);
+                project.Items.Count.Should().Be(3);
+                project.Items[0].Name.Should().Be("Item1ItemSufix");
+                transaction.Commit();
+            }
         }
 
         [SetUp]
@@ -117,7 +116,7 @@ namespace DataAccess.Tests
         {
             Configuration configuration =
                 Fluently.Configure()
-                    .Database(SQLiteConfiguration.Standard.InMemory)
+                    .Database(SQLiteConfiguration.Standard.ConnectionString("FullUri=file:memorydb.db?mode=memory&cache=shared"))
                     .Diagnostics(d => d.Enable(true).OutputToConsole())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProjectMap>())
                     .ExposeConfiguration(
@@ -130,9 +129,10 @@ namespace DataAccess.Tests
                                             i.LogFormattedSql = true;
                                             i.LogSqlInConsole = true;
                                         });
-                                c.SetProperty("nhibernate-logger", "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
-                            })
-                    .BuildConfiguration();
+                                c.SetProperty(
+                                    "nhibernate-logger",
+                                    "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
+                            }).BuildConfiguration();
 
             configuration.ProtectMyDomainModelFromDomainDrivenDesignIgnorance();
             configuration.AddDddListeners();
@@ -150,6 +150,37 @@ namespace DataAccess.Tests
         public void TearDown()
         {
             this.session.Dispose();
+        }
+
+        [Test]
+        public void UpdateSubItemsTest()
+        {
+            Guid id = Guid.NewGuid();
+
+            using (ISession session1 = this.sessionFactory.OpenSession())
+            {
+                using (ITransaction transaction = session1.BeginTransaction())
+                {
+                    var project = new Project(id, "Project 1");
+                    project.AddItem(Guid.NewGuid(), "Item1");
+                    project.AddItem(Guid.NewGuid(), "Item2");
+                    session1.Save(project);
+                    transaction.Commit();
+                }
+            }
+
+            using (ISession session1 = this.sessionFactory.OpenSession())
+            {
+                using (ITransaction transaction = session1.BeginTransaction())
+                {
+                    var project = session1.Get<Project>(id);
+                    
+                    project.AddItem(Guid.NewGuid(), "Item3");
+
+                    project.Items.Count.Should().Be(3);
+                    transaction.Commit();
+                }
+            }
         }
 
         private void CreateProject(Guid id)

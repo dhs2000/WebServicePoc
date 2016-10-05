@@ -17,6 +17,8 @@ namespace DataAccess
             this.Version(i => i.Version).UnsavedValue("0");
 
             this.Not.LazyLoad();
+
+            this.DynamicUpdate();
         }
     }
 }
