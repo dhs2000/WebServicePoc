@@ -14,6 +14,8 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
+using NLog;
+
 using NUnit.Framework;
 
 namespace DataAccess.Tests
@@ -21,6 +23,8 @@ namespace DataAccess.Tests
     [TestFixture]
     public class ProjectMapTests
     {
+        private static readonly ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         private ISession session;
 
         [SetUp]
@@ -34,11 +38,17 @@ namespace DataAccess.Tests
                         .AddFromAssemblyOf<ProjectMap>())
                 .BuildConfiguration();
 
+            configuration.SetProperty("nhibernate-logger", "NHibernate.NLogLoggerFactory, NHibernate.NLog");
+            configuration.SetProperty("show_sql", "true");
+
+
             ISessionFactory sessionFactory = configuration.BuildSessionFactory();
 
             this.session = sessionFactory.OpenSession();
 
             new SchemaExport(configuration).Execute(s => { }, true, false, this.session.Connection, Console.Out);
+
+            Logger.Debug("Db session was created");
         }
 
         [TearDown]
