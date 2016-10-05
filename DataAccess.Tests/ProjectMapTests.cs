@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using DomainModel;
@@ -63,8 +62,8 @@ namespace DataAccess.Tests
             var project = new Project(Guid.NewGuid(), "Project 1");
 
             new PersistenceSpecification<Project>(this.session)
-                .CheckProperty(c => c.Name, project.Name)
-                .CheckProperty(c => c.RootRevision, project.RootRevision)
+                .CheckProperty(c => c.Name, "pppp")
+                .CheckProperty(c => c.RootRevision, 23)
                 .VerifyTheMappings(project);
         }
     }
