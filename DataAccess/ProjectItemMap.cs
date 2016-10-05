@@ -14,6 +14,8 @@ namespace DataAccess
 
             this.References(i => i.Project).Not.Nullable().Column("ProjectId");
 
+            this.Version(i => i.Version).UnsavedValue("0");
+
             this.Not.LazyLoad();
         }
     }

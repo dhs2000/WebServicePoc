@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ForceRootAggregateUpdateListener.cs" />
+    <Compile Include="NhibernateConfigurationExtensions.cs" />
     <Compile Include="ProjectItemMap.cs" />
     <Compile Include="ProjectMap.cs" />
     <Compile Include="IProjectRepository.cs" />

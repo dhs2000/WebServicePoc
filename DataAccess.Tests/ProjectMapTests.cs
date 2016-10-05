@@ -48,7 +48,7 @@ namespace DataAccess.Tests
 
             using (ITransaction transaction = this.session.BeginTransaction())
             {
-                var project = this.session.Load<Project>(id);
+                var project = this.session.Get<Project>(id);
                 project.AddItem(Guid.NewGuid(), "Item3");
                 project.Items.Count.Should().Be(3);
                 transaction.Commit();
@@ -58,7 +58,7 @@ namespace DataAccess.Tests
 
             using (ITransaction transaction = this.session.BeginTransaction())
             {
-                var project = this.session.Load<Project>(id);
+                var project = this.session.Get<Project>(id);
                 ProjectItem first = project.Items[0];
                 first.AppendToName("ItemSufix");
                 transaction.Commit();
@@ -68,7 +68,7 @@ namespace DataAccess.Tests
 
             using (ITransaction transaction = this.session.BeginTransaction())
             {
-                var project = this.session.Load<Project>(id);                
+                var project = this.session.Get<Project>(id);                
                 project.Items.Count.Should().Be(3);
                 project.Items[0].Name.Should().Be("Item1ItemSufix");
                 transaction.Commit();
@@ -133,6 +133,9 @@ namespace DataAccess.Tests
                                 c.SetProperty("nhibernate-logger", "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
                             })
                     .BuildConfiguration();
+
+            configuration.ProtectMyDomainModelFromDomainDrivenDesignIgnorance();
+            configuration.AddDddListeners();
 
             this.sessionFactory = configuration.BuildSessionFactory();
 

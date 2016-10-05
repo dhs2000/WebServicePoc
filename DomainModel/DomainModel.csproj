@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IAggregateRoot.cs" />
+    <Compile Include="Common\IAggregateRootProvider.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

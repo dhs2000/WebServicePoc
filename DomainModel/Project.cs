@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
+using DomainModel.Common;
+
 namespace DomainModel
 {
-    public class Project
+    public class Project : IAggregateRoot
     {
         private readonly IList<ProjectItem> items = new List<ProjectItem>();
 
@@ -18,7 +20,6 @@ namespace DomainModel
         {
             this.Id = id;
             this.Name = name;
-            this.RootRevision = 1;
         }
 
         public Guid Id { get; private set; }
@@ -39,9 +40,9 @@ namespace DomainModel
 
         public IReadOnlyList<ProjectItem> Items => new ReadOnlyCollection<ProjectItem>(this.items);
 
-        public void AddItem(Guid id, string name)
+        public void AddItem(Guid id, string itemName)
         {
-            this.items.Add(new ProjectItem(id, name, this));
+            this.items.Add(new ProjectItem(id, itemName, this));
         }
 
         public void UpdateProjectName(string newName)

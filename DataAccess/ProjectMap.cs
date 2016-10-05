@@ -20,8 +20,7 @@ namespace DataAccess
                 .AsBag()
                 .Inverse();
 
-            this.Map(i => i.RootRevision)
-                .OptimisticLock();
+            this.Version(i => i.RootRevision).UnsavedValue("0");
 
             this.Not.LazyLoad();
         }

@@ -1,8 +1,10 @@
 ﻿using System;
 
+using DomainModel.Common;
+
 namespace DomainModel
 {
-    public class ProjectItem
+    public class ProjectItem : IAggregateRootProvider
     {
         private ProjectItem()
         {
@@ -30,6 +32,10 @@ namespace DomainModel
         public string Name { get; private set; }
 
         public Project Project { get; private set; }
+
+        public int Version { get; private set; }
+
+        IAggregateRoot IAggregateRootProvider.AggregateRoot => this.Project;
 
         public void AppendToName(string itemsufix)
         {
