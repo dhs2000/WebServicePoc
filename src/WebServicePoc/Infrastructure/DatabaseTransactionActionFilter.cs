@@ -1,13 +1,27 @@
 ﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc.Filters;
 
+using NHibernate;
+
 namespace WebServicePoc.Infrastructure
 {
     public class DatabaseTransactionActionFilter : IAsyncActionFilter
     {
+        private readonly ISession session;
+
+        public DatabaseTransactionActionFilter(ISession session)
+        {
+            if (session == null)
+            {
+                throw new ArgumentNullException(nameof(session));
+            }
+
+            this.session = session;
+        }
 
         public async Task OnActionExecutionAsync(
             ActionExecutingContext context,
@@ -16,13 +30,13 @@ namespace WebServicePoc.Infrastructure
             Debug.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             try
             {
-                // TODO: Stat tr
+                this.session.BeginTransaction(IsolationLevel.ReadCommitted);
                 await next();
-                // TODO: Commit tr
+                this.session.Transaction.Commit();
             }
             catch (Exception e)
             {
-                // TODO: Rollback tr
+                this.session.Transaction.Rollback();
                 throw;
             }
             finally

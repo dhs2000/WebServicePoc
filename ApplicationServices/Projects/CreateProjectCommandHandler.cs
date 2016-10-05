@@ -29,7 +29,7 @@ namespace ApplicationServices.Projects
             var project = new DomainModel.Project(Guid.NewGuid(), message.Name);
             project.AddItem(Guid.NewGuid(), "Item 1");
 
-            this.projectRepository.Save(project);
+            this.projectRepository.Add(project);
 
             return Task.FromResult(Unit.Value);
         }

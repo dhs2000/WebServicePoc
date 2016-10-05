@@ -8,6 +8,6 @@ namespace DataAccess
     {
         Project Get(Guid id);
 
-        void Save(Project project);
+        void Add(Project project);
     }
 }

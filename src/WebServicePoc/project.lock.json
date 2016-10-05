@@ -26,18 +26,16 @@
           "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll": {}
         }
       },
-      "EntityFramework/6.1.3": {
+      "FluentNHibernate/2.0.3": {
         "type": "package",
-        "frameworkAssemblies": [
-          "System.ComponentModel.DataAnnotations"
-        ],
+        "dependencies": {
+          "NHibernate": "4.0.0"
+        },
         "compile": {
-          "lib/net45/EntityFramework.SqlServer.dll": {},
-          "lib/net45/EntityFramework.dll": {}
+          "lib/net40/FluentNHibernate.dll": {}
         },
         "runtime": {
-          "lib/net45/EntityFramework.SqlServer.dll": {},
-          "lib/net45/EntityFramework.dll": {}
+          "lib/net40/FluentNHibernate.dll": {}
         }
       },
       "FluentValidation/6.2.1": {
@@ -100,6 +98,15 @@
           "lib/Net45/zh-CN/FluentValidation.resources.dll": {
             "locale": "zh-CN"
           }
+        }
+      },
+      "Iesi.Collections/4.0.1.4000": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Iesi.Collections.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Iesi.Collections.dll": {}
         }
       },
       "Libuv/1.9.0": {
@@ -1298,6 +1305,18 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "NHibernate/4.0.4.4000": {
+        "type": "package",
+        "dependencies": {
+          "Iesi.Collections": "[4.0.0, 5.0.0)"
+        },
+        "compile": {
+          "lib/net40/NHibernate.dll": {}
+        },
+        "runtime": {
+          "lib/net40/NHibernate.dll": {}
+        }
+      },
       "NLog/4.3.9": {
         "type": "package",
         "compile": {
@@ -2129,7 +2148,11 @@
         }
       },
       "ApplicationServices/1.0.0": {
-        "type": "project"
+        "type": "project",
+        "dependencies": {
+          "DataAccess": "1.0.0",
+          "DomainModel": "1.0.0"
+        }
       },
       "DataAccess/1.0.0": {
         "type": "project",
@@ -2167,31 +2190,16 @@
         "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.xml"
       ]
     },
-    "EntityFramework/6.1.3": {
-      "sha512": "2xzFHAF3VVdmTR3//MygtQpwfbDjeaq+nQwCcokLzen7MKHOojPaxNPQPa4diHY1QtcR7zlHAJHNRqPB7W2Syw==",
+    "FluentNHibernate/2.0.3": {
+      "sha512": "qlnjj/a2ClTVWLw0uESCBsmd5r+LaeNXoaUiVyeGzpXmqTs/mfcgZP+GO63xp3VTq4ydNBHKBuWMFMndW/uzOQ==",
       "type": "package",
-      "path": "EntityFramework/6.1.3",
+      "path": "FluentNHibernate/2.0.3",
       "files": [
-        "EntityFramework.6.1.3.nupkg.sha512",
-        "EntityFramework.nuspec",
-        "content/App.config.transform",
-        "content/Web.config.transform",
-        "lib/net40/EntityFramework.SqlServer.dll",
-        "lib/net40/EntityFramework.SqlServer.xml",
-        "lib/net40/EntityFramework.dll",
-        "lib/net40/EntityFramework.xml",
-        "lib/net45/EntityFramework.SqlServer.dll",
-        "lib/net45/EntityFramework.SqlServer.xml",
-        "lib/net45/EntityFramework.dll",
-        "lib/net45/EntityFramework.xml",
-        "tools/EntityFramework.PowerShell.Utility.dll",
-        "tools/EntityFramework.PowerShell.dll",
-        "tools/EntityFramework.psd1",
-        "tools/EntityFramework.psm1",
-        "tools/about_EntityFramework.help.txt",
-        "tools/init.ps1",
-        "tools/install.ps1",
-        "tools/migrate.exe"
+        "FluentNHibernate.2.0.3.nupkg.sha512",
+        "FluentNHibernate.nuspec",
+        "lib/net40/FluentNHibernate.XML",
+        "lib/net40/FluentNHibernate.dll",
+        "lib/net40/FluentNHibernate.pdb"
       ]
     },
     "FluentValidation/6.2.1": {
@@ -2270,6 +2278,17 @@
         "lib/uap10.0/ru/FluentValidation.resources.dll",
         "lib/uap10.0/sv/FluentValidation.resources.dll",
         "lib/uap10.0/zh-CN/FluentValidation.resources.dll"
+      ]
+    },
+    "Iesi.Collections/4.0.1.4000": {
+      "sha512": "77x4RfYcgQyQIfvmz3WUDGmzJf7CHl1++ArQz+7ZyrxuGSULkczQlbX140FKJY42YpTpbwLqr5fsQxAZ5AB5qg==",
+      "type": "package",
+      "path": "Iesi.Collections/4.0.1.4000",
+      "files": [
+        "Iesi.Collections.4.0.1.4000.nupkg.sha512",
+        "Iesi.Collections.nuspec",
+        "lib/net40/Iesi.Collections.dll",
+        "lib/net40/Iesi.Collections.xml"
       ]
     },
     "Libuv/1.9.0": {
@@ -3315,6 +3334,30 @@
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "tools/install.ps1"
+      ]
+    },
+    "NHibernate/4.0.4.4000": {
+      "sha512": "Me3y8Q1NPEfiTRuisgayLs5nm7J4hoGhvXT/hD5w78WajPFfsb+qNP2ld+bNimpvW0U/BDSaZAUS0FKl5+ty/w==",
+      "type": "package",
+      "path": "NHibernate/4.0.4.4000",
+      "files": [
+        "ConfigurationTemplates/FireBird.cfg.xml",
+        "ConfigurationTemplates/MSSQL.cfg.xml",
+        "ConfigurationTemplates/MySql.cfg.xml",
+        "ConfigurationTemplates/Oracle.cfg.xml",
+        "ConfigurationTemplates/PostgreSQL.cfg.xml",
+        "ConfigurationTemplates/SQLite.cfg.xml",
+        "ConfigurationTemplates/SybaseASE.cfg.xml",
+        "ConfigurationTemplates/SybaseSQLAnywhere.cfg.xml",
+        "NHibernate.4.0.4.4000.nupkg.sha512",
+        "NHibernate.license.txt",
+        "NHibernate.nuspec",
+        "NHibernate.readme.html",
+        "NHibernate.releasenotes.txt",
+        "lib/net40/NHibernate.dll",
+        "lib/net40/NHibernate.xml",
+        "nhibernate-configuration.xsd",
+        "nhibernate-mapping.xsd"
       ]
     },
     "NLog/4.3.9": {
@@ -6705,8 +6748,9 @@
     "": [
       "Autofac >= 4.1.1",
       "Autofac.Extensions.DependencyInjection >= 4.0.0",
-      "EntityFramework >= 6.1.3",
+      "FluentNHibernate >= 2.0.3",
       "FluentValidation >= 6.2.1",
+      "Iesi.Collections >= 4.0.1.4000",
       "MediatR >= 2.1.0",
       "Microsoft.AspNetCore.Mvc >= 1.0.1",
       "Microsoft.AspNetCore.Routing >= 1.0.1",
@@ -6719,6 +6763,7 @@
       "Microsoft.Extensions.Logging.Console >= 1.0.0",
       "Microsoft.Extensions.Logging.Debug >= 1.0.0",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
+      "NHibernate >= 4.0.4.4000",
       "NLog >= 4.3.9",
       "StyleCop.Error.MSBuild >= 1.0.0",
       "StyleCop.MSBuild >= 4.7.54"
@@ -6726,7 +6771,8 @@
     ".NETFramework,Version=v4.6.1": [
       "ApplicationServices",
       "DataAccess",
-      "DomainModel"
+      "DomainModel",
+      "System.Data >= 4.0.0"
     ]
   },
   "tools": {

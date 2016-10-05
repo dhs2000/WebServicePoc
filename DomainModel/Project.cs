@@ -6,7 +6,7 @@ namespace DomainModel
 {
     public class Project
     {
-        private readonly List<ProjectItem> items = new List<ProjectItem>();
+        private readonly IList<ProjectItem> items = new List<ProjectItem>();
 
         private Project()
         {
@@ -25,7 +25,7 @@ namespace DomainModel
 
         public int RootRevision { get; private set; }
 
-        public IReadOnlyCollection<ProjectItem> Items => this.items;
+        public IReadOnlyCollection<ProjectItem> Items => new ReadOnlyCollection<ProjectItem>(this.items);
 
         public void AddItem(Guid id, string name)
         {
