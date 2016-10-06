@@ -1,6 +1,9 @@
 ﻿using Autofac;
 
 using DataAccess;
+using DataAccess.Mappings;
+using DataAccess.NHibernate;
+using DataAccess.Repositories;
 
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;

@@ -2,7 +2,7 @@
 
 using FluentValidation;
 
-namespace ApplicationServices.Projects
+namespace ApplicationServices
 {
     public static class ValidationExtensions
     {

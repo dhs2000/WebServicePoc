@@ -4,7 +4,7 @@ using NHibernate;
 
 using NLog;
 
-namespace DataAccess.Tests
+namespace DataAccess.NHibernate
 {
     public class NLogLogger : IInternalLogger
     {

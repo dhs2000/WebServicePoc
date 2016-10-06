@@ -2,7 +2,7 @@
 
 using FluentNHibernate.Mapping;
 
-namespace DataAccess
+namespace DataAccess.Mappings
 {
     public class FileMap : ClassMap<File>
     {

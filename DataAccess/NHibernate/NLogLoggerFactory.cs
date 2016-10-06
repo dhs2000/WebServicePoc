@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NHibernate;
 
-using NHibernate;
-
-namespace DataAccess.Tests
+namespace DataAccess.NHibernate
 {
     public class NLogLoggerFactory : ILoggerFactory
     {

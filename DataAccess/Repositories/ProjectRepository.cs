@@ -1,10 +1,8 @@
-﻿using System;
-
-using DomainModel;
+﻿using DomainModel;
 
 using NHibernate;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public class ProjectRepository : BaseRepository<Project>, IProjectRepository
     {

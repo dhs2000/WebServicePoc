@@ -6,7 +6,7 @@ using NHibernate.Cfg;
 using NHibernate.Event;
 using NHibernate.Mapping;
 
-namespace DataAccess
+namespace DataAccess.NHibernate
 {
     public static class NhibernateConfigurationExtensions
     {

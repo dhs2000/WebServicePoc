@@ -3,7 +3,7 @@
 using NHibernate;
 using NHibernate.Event;
 
-namespace DataAccess
+namespace DataAccess.NHibernate
 {
     public class ForceRootAggregateUpdateListener : IPreUpdateEventListener, IPreInsertEventListener
     {

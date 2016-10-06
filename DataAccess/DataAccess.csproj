@@ -59,20 +59,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseRepository.cs" />
-    <Compile Include="FileMap.cs" />
-    <Compile Include="FileRepository.cs" />
-    <Compile Include="ForceRootAggregateUpdateListener.cs" />
-    <Compile Include="IFileRepository.cs" />
-    <Compile Include="NhibernateConfigurationExtensions.cs" />
-    <Compile Include="ProjectItemMap.cs" />
-    <Compile Include="ProjectMap.cs" />
-    <Compile Include="IProjectRepository.cs" />
-    <Compile Include="ProjectRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Mappings\FileMap.cs" />
+    <Compile Include="Repositories\FileRepository.cs" />
+    <Compile Include="NHibernate\ForceRootAggregateUpdateListener.cs" />
+    <Compile Include="Repositories\IFileRepository.cs" />
+    <Compile Include="NHibernate\NhibernateConfigurationExtensions.cs" />
+    <Compile Include="NHibernate\NLogLogger.cs" />
+    <Compile Include="NHibernate\NLogLoggerFactory.cs" />
+    <Compile Include="Mappings\ProjectItemMap.cs" />
+    <Compile Include="Mappings\ProjectMap.cs" />
+    <Compile Include="Repositories\IProjectRepository.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

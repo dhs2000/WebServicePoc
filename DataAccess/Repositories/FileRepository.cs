@@ -2,7 +2,7 @@
 
 using NHibernate;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public class FileRepository : BaseRepository<File>, IFileRepository
     {

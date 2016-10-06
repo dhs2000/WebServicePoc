@@ -6,8 +6,8 @@ namespace ApplicationServices.Projects
     {
         public CreateProjectCommandValidator()
         {
-            this.RuleFor(i => i.Id).NotEmpty();
-            this.RuleFor(i => i.Name).NotEmpty();
+            this.RuleFor(i => i.Id).NotEmpty().IsGuid();
+            this.RuleFor(i => i.Name).Length(1, 255);
         }
     }
 }

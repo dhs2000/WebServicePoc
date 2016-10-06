@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using DataAccess;
+using DataAccess.Repositories;
 
 using DomainModel;
 
@@ -36,7 +37,7 @@ namespace ApplicationServices.Projects
         {
             Debug.WriteLine(message);
 
-            var project = new DomainModel.Project(Guid.NewGuid(), message.Name);
+            var project = new DomainModel.Project(new Guid(message.Id), message.Name);
             project.AddItem(Guid.NewGuid(), "Item 1");
             project.AddItem(Guid.NewGuid(), "Item 2");
 

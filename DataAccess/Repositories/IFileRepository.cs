@@ -1,6 +1,6 @@
 ﻿using DomainModel;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public interface IFileRepository : IRepository<File>
     {

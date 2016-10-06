@@ -2,7 +2,7 @@
 
 using DomainModel;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public interface IRepository<T>
     {
