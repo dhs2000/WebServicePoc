@@ -8,6 +8,8 @@ namespace DataAccess
     {
         public ProjectItemMap()
         {
+            this.Table("ProjectItems");
+
             this.Id(i => i.Id).Not.Nullable().GeneratedBy.Assigned();
 
             this.Map(i => i.Name).Not.Nullable().Length(255);

@@ -4,10 +4,14 @@ using DomainModel;
 
 namespace DataAccess
 {
-    public interface IProjectRepository
+    public interface IRepository<T>
     {
-        Project Get(Guid id);
+        T Get(Guid id, bool forceLock = false);
 
-        void Add(Project project);
+        void Add(T project);
+    }
+
+    public interface IProjectRepository : IRepository<Project>
+    {
     }
 }

@@ -19,7 +19,10 @@ namespace WebServicePoc.Infrastructure
             builder.Register<ISessionFactory>(i => CreateSessionFactory()).SingleInstance();
             builder.Register<ISession>(i => i.Resolve<ISessionFactory>().OpenSession()).InstancePerLifetimeScope();
 
-            builder.RegisterType<IProjectRepository>().As<ProjectRepository>().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IProjectRepository).Assembly)
+                              .Where(t => t.Name.EndsWith("Repository"))
+                              .AsImplementedInterfaces()
+                              .InstancePerLifetimeScope();
         }
 
         private static ISessionFactory CreateSessionFactory()
