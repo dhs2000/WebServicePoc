@@ -6,7 +6,13 @@ namespace DomainModel
 {
     public class ProjectItem : IAggregateRootProvider
     {
-        private ProjectItem()
+        private Guid id;
+
+        private string name;
+
+        private Project project;
+
+        protected internal ProjectItem()
         {
         }
 
@@ -22,29 +28,59 @@ namespace DomainModel
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(name));
             }
 
-            this.Id = id;
-            this.Name = name;
-            this.Project = project;
+            this.id = id;
+            this.name = name;
+            this.project = project;
         }
 
-        public Guid Id { get; private set; }
+        public virtual Guid Id
+        {
+            get
+            {
+                return this.id;
+            }
+            protected internal set
+            {
+                this.id = value;
+            }
+        }
 
-        public File File { get; private set; }
+        public virtual File File { get; protected internal set; }
 
-        public string Name { get; private set; }
+        public virtual string Name
+        {
+            get
+            {
+                return this.name;
+            }
+            protected internal set
+            {
+                this.name = value;
+            }
+        }
 
-        public Project Project { get; private set; }
+        public virtual Project Project
+        {
+            get
+            {
+                return this.project;
+            }
+            protected internal set
+            {
+                this.project = value;
+            }
+        }
 
-        public int Version { get; private set; }
+        public virtual int Version { get; protected internal set; }
 
         IAggregateRoot IAggregateRootProvider.AggregateRoot => this.Project;
 
-        public void AppendToName(string itemsufix)
+        public virtual void AppendToName(string itemsufix)
         {
             this.Name += itemsufix;
         }
 
-        public void LinkFile(File file)
+        public virtual void LinkFile(File file)
         {
             if (file == null)
             {

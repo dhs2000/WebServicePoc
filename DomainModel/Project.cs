@@ -10,9 +10,11 @@ namespace DomainModel
     {
         private readonly IList<ProjectItem> items = new List<ProjectItem>();
 
+        private Guid id;
+
         private string name;
 
-        private Project()
+        protected Project()
         {
         }
 
@@ -23,34 +25,44 @@ namespace DomainModel
                 throw new ArgumentNullException(nameof(name));
             }
 
-            this.Id = id;
-            this.Name = name;
+            this.id = id;
+            this.name = name;
         }
 
-        public Guid Id { get; private set; }
+        public virtual Guid Id
+        {
+            get
+            {
+                return this.id;
+            }
+            protected set
+            {
+                this.id = value;
+            }
+        }
 
-        public string Name
+        public virtual string Name
         {
             get
             {
                 return this.name;
             }
-            private set
+            protected set
             {
                 this.name = value;
             }
         }
 
-        public int RootRevision { get; private set; }
+        public virtual int RootRevision { get; protected set; }
 
-        public IReadOnlyList<ProjectItem> Items => new ReadOnlyCollection<ProjectItem>(this.items);
+        public virtual IReadOnlyList<ProjectItem> Items => new ReadOnlyCollection<ProjectItem>(this.items);
 
-        public void AddItem(Guid id, string itemName)
+        public virtual void AddItem(Guid projectItemId, string itemName)
         {
-            this.items.Add(new ProjectItem(id, itemName, this));
+            this.items.Add(new ProjectItem(projectItemId, itemName, this));
         }
 
-        public void UpdateProjectName(string newName)
+        public virtual void UpdateProjectName(string newName)
         {
             this.Name = newName;
         }

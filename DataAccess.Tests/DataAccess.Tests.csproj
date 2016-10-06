@@ -102,6 +102,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NHibernateBootstrapper.cs" />
     <Compile Include="NLogLoggerFactory.cs" />
     <Compile Include="NLogLogger.cs" />
     <Compile Include="ProjectMapTests.cs" />

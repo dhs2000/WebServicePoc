@@ -22,8 +22,6 @@ namespace DataAccess
 
             this.Version(i => i.RootRevision).UnsavedValue("0");
 
-            this.Not.LazyLoad();
-
             this.DynamicUpdate();
         }
     }
