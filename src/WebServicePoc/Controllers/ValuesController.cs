@@ -44,9 +44,9 @@ namespace WebServicePoc.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Project[]> Get(string id)
         {
-            return "value";
+            return (await this.mediator.SendAsync(new GetProjectsRequest() { Id = id })).Items;
         }
 
         // POST api/values

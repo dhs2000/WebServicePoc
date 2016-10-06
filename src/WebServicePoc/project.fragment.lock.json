@@ -9,7 +9,9 @@
       },
       "runtime": {
         "../packages/FluentValidation.6.2.1.0/lib/Net45/FluentValidation.dll": {},
+        "../packages/Iesi.Collections.4.0.1.4000/lib/net40/Iesi.Collections.dll": {},
         "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
+        "../packages/NHibernate.4.0.4.4000/lib/net40/NHibernate.dll": {},
         "bin/Debug/ApplicationServices.dll": {}
       },
       "contentFiles": {

@@ -22,9 +22,9 @@ namespace DataAccess.Tests
             new SchemaExport(configuration).Execute(s => { }, true, false, this.Session.Connection, Console.Out);
         }
 
-        public ISession Session { get; private set; }
-
         public ISessionFactory SessionFactory { get; private set; }
+
+        private ISession Session { get; set; }
 
         public void Dispose()
         {
@@ -50,11 +50,11 @@ namespace DataAccess.Tests
                                             i.LogFormattedSql = true;
                                             i.LogSqlInConsole = true;
                                         });
-/*
-                                c.SetProperty(
-                                    "nhibernate-logger",
-                                    "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
-*/
+                                /*
+                                                                c.SetProperty(
+                                                                    "nhibernate-logger",
+                                                                    "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
+                                */
                                 c.AddDddListeners();
                             }).BuildConfiguration();
 

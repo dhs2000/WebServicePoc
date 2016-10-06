@@ -7,5 +7,7 @@ namespace ApplicationServices.Projects
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public long ItemsCount { get; set; }        
     }
 }

@@ -62,8 +62,6 @@ namespace DataAccess.Tests
             this.bootstrapper = new NHibernateBootstrapper();
 
             this.SessionFactory = this.bootstrapper.SessionFactory;
-
-            this.Session = this.bootstrapper.Session;
         }
 
         [TearDown]

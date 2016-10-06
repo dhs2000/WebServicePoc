@@ -36,8 +36,16 @@
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MediatR, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.2.1.0\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,9 +63,11 @@
     <Compile Include="Projects\CreateProjectCommandHandler.cs" />
     <Compile Include="Projects\CreateProjectCommandValidator.cs" />
     <Compile Include="Projects\GetProjectsRequestHandler.cs" />
+    <Compile Include="Projects\GetProjectsRequestValidator.cs" />
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\GetProjectsRequest.cs" />
     <Compile Include="Projects\GetProjectsResponse.cs" />
+    <Compile Include="Projects\ValidationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
