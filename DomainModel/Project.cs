@@ -18,6 +18,11 @@ namespace DomainModel
 
         public Project(Guid id, string name)
         {
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
             this.Id = id;
             this.Name = name;
         }

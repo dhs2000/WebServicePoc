@@ -29,6 +29,8 @@ namespace DomainModel
 
         public Guid Id { get; private set; }
 
+        public File File { get; private set; }
+
         public string Name { get; private set; }
 
         public Project Project { get; private set; }
@@ -40,6 +42,16 @@ namespace DomainModel
         public void AppendToName(string itemsufix)
         {
             this.Name += itemsufix;
+        }
+
+        public void LinkFile(File file)
+        {
+            if (file == null)
+            {
+                throw new ArgumentNullException(nameof(file));
+            }
+
+            this.File = file;
         }
     }
 }
