@@ -6,6 +6,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 
 using NHibernate;
+using NHibernate.Cfg;
 
 namespace WebServicePoc.Infrastructure
 {
@@ -36,6 +37,25 @@ namespace WebServicePoc.Infrastructure
                             .ShowSql())
                     .Mappings(m => m
                         .FluentMappings.AddFromAssemblyOf<ProjectMap>())
+                    .ExposeConfiguration(
+                        c =>
+                        {
+                            c.DataBaseIntegration(
+                                i =>
+                                {
+                                    i.AutoCommentSql = true;
+                                    i.LogFormattedSql = true;
+                                    
+                                    // i.LogSqlInConsole = true;
+                                });
+                            /*
+                                                            c.SetProperty(
+                                                                "nhibernate-logger",
+                                                                "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
+                            */
+                            c.AddDddListeners();
+                        })
+                    .BuildConfiguration()
                     .BuildSessionFactory();
         }
     }

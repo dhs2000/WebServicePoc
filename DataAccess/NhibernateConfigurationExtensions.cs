@@ -12,19 +12,6 @@ namespace DataAccess
     {
         public static void AddDddListeners(this Configuration configuration)
         {
-            configuration.EventListeners.PreInsertEventListeners = new IPreInsertEventListener[]
-                {
-                    new ForceRootAggregateUpdateListener()
-                };
-
-            configuration.EventListeners.PreUpdateEventListeners = new IPreUpdateEventListener[]
-                {
-                    new ForceRootAggregateUpdateListener()
-                };
-        }
-
-        public static void ProtectMyDomainModelFromDomainDrivenDesignIgnorance(this Configuration configuration)
-        {
             foreach (PersistentClass clazz in configuration.ClassMappings)
             {
                 if ((typeof(IAggregateRoot).IsAssignableFrom(clazz.MappedClass) == false)
@@ -33,6 +20,18 @@ namespace DataAccess
                     throw new InvalidOperationException("DDD Violation " + clazz.MappedClass);
                 }
             }
+            
+            /*
+                        configuration.EventListeners.PreInsertEventListeners = new IPreInsertEventListener[]
+                            {
+                                new ForceRootAggregateUpdateListener()
+                            };
+            */
+
+            configuration.EventListeners.PreUpdateEventListeners = new IPreUpdateEventListener[]
+                {
+                    new ForceRootAggregateUpdateListener()
+                };
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DataAccess
             this.Map(i => i.Name).Not.Nullable().Length(255);
 
             this.HasMany<ProjectItem>(i => i.Items)
-                .Cascade.All()
+                .Cascade.AllDeleteOrphan()
                 .Access.CamelCaseField()
                 .NotFound.Exception()
                 .Fetch.Join()

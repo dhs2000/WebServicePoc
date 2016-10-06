@@ -50,13 +50,14 @@ namespace DataAccess.Tests
                                             i.LogFormattedSql = true;
                                             i.LogSqlInConsole = true;
                                         });
+/*
                                 c.SetProperty(
                                     "nhibernate-logger",
                                     "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
+*/
+                                c.AddDddListeners();
                             }).BuildConfiguration();
 
-            configuration.ProtectMyDomainModelFromDomainDrivenDesignIgnorance();
-            configuration.AddDddListeners();
             return configuration;
         }
     }

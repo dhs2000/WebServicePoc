@@ -84,12 +84,39 @@ namespace DataAccess.Tests
                 using (ITransaction transaction = session.BeginTransaction())
                 {
                     var project = session.Get<Project>(id);
-                    session.Lock(project, LockMode.Force);
 
                     project.AddItem(Guid.NewGuid(), "Item3");
 
                     project.Items[1].File.Name.Should().Be("File1");
                     project.Items.Count.Should().Be(3);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        [Test]
+        public void RemoveSubItemTest()
+        {
+            Guid id = Guid.NewGuid();
+
+            this.CreateProject(id);
+
+            using (ISession session = this.SessionFactory.OpenSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    var project = session.Get<Project>(id);
+                    project.RemoveItem(project.Items[1].Id);
+                    transaction.Commit();
+                }
+            }
+
+            using (ISession session = this.SessionFactory.OpenSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    var project = session.Get<Project>(id);
+                    project.Items.Count.Should().Be(1);
                     transaction.Commit();
                 }
             }

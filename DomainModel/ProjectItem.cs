@@ -12,7 +12,7 @@ namespace DomainModel
 
         private Project project;
 
-        protected internal ProjectItem()
+        protected ProjectItem()
         {
         }
 
@@ -45,7 +45,7 @@ namespace DomainModel
             }
         }
 
-        public virtual File File { get; protected internal set; }
+        public virtual File File { get; protected set; }
 
         public virtual string Name
         {
@@ -53,7 +53,7 @@ namespace DomainModel
             {
                 return this.name;
             }
-            protected internal set
+            protected set
             {
                 this.name = value;
             }
@@ -65,7 +65,7 @@ namespace DomainModel
             {
                 return this.project;
             }
-            protected internal set
+            protected set
             {
                 this.project = value;
             }

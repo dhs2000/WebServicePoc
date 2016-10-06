@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 using DomainModel.Common;
 
@@ -60,6 +61,17 @@ namespace DomainModel
         public virtual void AddItem(Guid projectItemId, string itemName)
         {
             this.items.Add(new ProjectItem(projectItemId, itemName, this));
+        }
+
+        public virtual void RemoveItem(Guid projectItemId)
+        {
+            ProjectItem item = this.items.FirstOrDefault(i => i.Id == projectItemId);
+            if (item == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.items.Remove(item);
         }
 
         public virtual void UpdateProjectName(string newName)
