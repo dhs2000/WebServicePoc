@@ -2,8 +2,6 @@
 
 using AutoMapper;
 
-using WebServicePoc.Controllers;
-
 namespace WebServicePoc.Infrastructure
 {
     public class AutommaperModule : Module

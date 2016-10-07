@@ -2,6 +2,6 @@
 {
     public interface IRequestFactory
     {
-        dynamic CreateRequest(string commandName, dynamic body);
+        dynamic CreateRequest(string name, dynamic body);
     }
 }

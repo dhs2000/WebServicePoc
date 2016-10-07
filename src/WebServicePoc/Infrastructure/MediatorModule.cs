@@ -22,10 +22,9 @@ namespace WebServicePoc.Infrastructure
                 .AsImplementedInterfaces();
 */
 
-
             builder.RegisterAssemblyTypes(typeof(GetProjectsRequestHandler).Assembly)
                 .As(type => type.GetInterfaces()
-                               .Where(interfaceType => TypeExtensions.IsClosedTypeOf(interfaceType, typeof(IAsyncRequestHandler<,>)))
+                               .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(IAsyncRequestHandler<,>)))
                                .Select(interfaceType => new KeyedService("AsyncRequestHandler", interfaceType)))
                 .InstancePerLifetimeScope();
 

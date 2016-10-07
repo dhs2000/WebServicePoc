@@ -1,40 +1,43 @@
 ﻿using System;
 
-using ApplicationServices.Projects;
-
 using AutoMapper;
+
+using NLog;
 
 namespace WebServicePoc.Infrastructure
 {
     public class RequestFactory : IRequestFactory
     {
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly IMapper mapper;
 
-        public RequestFactory(IMapper mapper)
+        private readonly IRequestTypeProvider requestTypeProvider;
+
+        public RequestFactory(IMapper mapper, IRequestTypeProvider requestTypeProvider)
         {
             if (mapper == null)
             {
                 throw new ArgumentNullException(nameof(mapper));
             }
 
+            if (requestTypeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(requestTypeProvider));
+            }
+
             this.mapper = mapper;
+            this.requestTypeProvider = requestTypeProvider;
         }
 
-        public dynamic CreateRequest(string commandName, dynamic body)
+        public dynamic CreateRequest(string name, dynamic body)
         {
-            if (string.Equals(commandName, "CreateProject", StringComparison.OrdinalIgnoreCase))
+            if (Logger.IsDebugEnabled)
             {
-                dynamic request = this.mapper.Map(body, body.GetType(), typeof(CreateProjectCommand));
-                return request;
+                Logger.Debug("Create request '{0}'", name);
             }
 
-            if (string.Equals(commandName, "GetProjects", StringComparison.OrdinalIgnoreCase))
-            {
-                dynamic request = this.mapper.Map(body, body.GetType(), typeof(GetProjectsRequest));
-                return request;
-            }
-
-            throw new ArgumentException($"Undefined command '{commandName}'", nameof(commandName));
+            return this.mapper.Map(body, body.GetType(), this.requestTypeProvider.GetType(name));
         }
     }
 }
