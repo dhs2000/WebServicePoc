@@ -40,7 +40,12 @@ namespace WebServicePoc
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc(o => o.Filters.Add(new DatabaseTransactionActionFilterFactory()));
+            services.AddMvc(
+                o =>
+                    {
+                        o.Filters.Add(typeof(ValidationExeptionActionFilter));
+                        o.Filters.Add(new DatabaseTransactionActionFilterFactory());
+                    });
 
             // Add Autofac
             var containerBuilder = new ContainerBuilder();

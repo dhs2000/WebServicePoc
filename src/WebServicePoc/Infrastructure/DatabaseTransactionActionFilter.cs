@@ -23,26 +23,24 @@ namespace WebServicePoc.Infrastructure
             this.session = session;
         }
 
-        public async Task OnActionExecutionAsync(
-            ActionExecutingContext context,
-            ActionExecutionDelegate next)
+        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            Debug.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            try
+            Debug.WriteLine(">> DatabaseTransactionActionFilter");
+
+            this.session.BeginTransaction(IsolationLevel.ReadCommitted);
+
+            ActionExecutedContext executedContext = await next();
+
+            if (executedContext.Exception == null)
             {
-                this.session.BeginTransaction(IsolationLevel.ReadCommitted);
-                await next();
+                Debug.WriteLine(">> DatabaseTransactionActionFilter.Commit");
                 this.session.Transaction.Commit();
             }
-            catch (Exception)
+            else
             {
+                Debug.WriteLine(">> DatabaseTransactionActionFilter.Rollback");
                 this.session.Transaction.Rollback();
-                throw;
             }
-            finally
-            {
-                Debug.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            }            
         }
     }
 }
