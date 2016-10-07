@@ -70,6 +70,7 @@
     <Compile Include="Mappings\ProjectItemMap.cs" />
     <Compile Include="Mappings\ProjectMap.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

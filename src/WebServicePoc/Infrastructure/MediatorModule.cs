@@ -26,12 +26,14 @@ namespace WebServicePoc.Infrastructure
             builder.RegisterAssemblyTypes(typeof(GetProjectsRequestHandler).Assembly)
                 .As(type => type.GetInterfaces()
                                .Where(interfaceType => TypeExtensions.IsClosedTypeOf(interfaceType, typeof(IAsyncRequestHandler<,>)))
-                               .Select(interfaceType => new KeyedService("AsyncRequestHandler", interfaceType)));
+                               .Select(interfaceType => new KeyedService("AsyncRequestHandler", interfaceType)))
+                .InstancePerLifetimeScope();
 
             builder.RegisterGenericDecorator(
                 typeof(AsyncValidationRequestHandler<,>),
                 typeof(IAsyncRequestHandler<,>),
-                "AsyncRequestHandler");
+                "AsyncRequestHandler")
+                .InstancePerLifetimeScope(); 
 
             builder.Register<SingleInstanceFactory>(
                 ctx =>

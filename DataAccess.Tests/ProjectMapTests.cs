@@ -21,8 +21,6 @@ namespace DataAccess.Tests
 
         private NHibernateBootstrapper bootstrapper;
 
-        public ISession Session { get; private set; }
-
         public ISessionFactory SessionFactory { get; private set; }
 
         [Test]
@@ -37,7 +35,7 @@ namespace DataAccess.Tests
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                    var project = this.Session.Load<Project>(id);
+                    var project = session.Load<Project>(id);
                     project.UpdateProjectName(NewName);
                     project.Name.Should().Be(NewName);
                     transaction.Commit();

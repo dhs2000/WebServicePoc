@@ -49,7 +49,7 @@ namespace WebServicePoc.Controllers
             return (await this.mediator.SendAsync(new GetProjectsRequest() { Id = id })).Items;
         }
 
-        // POST api/values
+        // POST api/{CommandName}
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateProjectCommand createProject)
         {
