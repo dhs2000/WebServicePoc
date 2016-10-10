@@ -10,6 +10,7 @@ using Autofac.Features.Variance;
 
 using MediatR;
 
+using WebServicePoc.Infrastructure.Transactions;
 using WebServicePoc.Infrastructure.Validation;
 
 namespace WebServicePoc.Infrastructure
@@ -30,8 +31,15 @@ namespace WebServicePoc.Infrastructure
             builder.RegisterGenericDecorator(
                 typeof(AsyncValidationRequestHandler<,>),
                 typeof(IAsyncRequestHandler<,>),
-                "AsyncRequestHandler")
-                .InstancePerLifetimeScope(); 
+                "AsyncRequestHandler",
+                "TransactionRequestHandlerDecorator")
+                .InstancePerLifetimeScope();
+
+            builder.RegisterGenericDecorator(
+                typeof(TransactionRequestHandlerDecorator<,>),
+                typeof(IAsyncRequestHandler<,>),
+                "TransactionRequestHandlerDecorator")
+                .InstancePerLifetimeScope();
 
             builder.Register<SingleInstanceFactory>(
                 ctx =>
