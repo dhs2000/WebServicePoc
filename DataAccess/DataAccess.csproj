@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessAssembly.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Mappings\FileMap.cs" />
     <Compile Include="Repositories\FileRepository.cs" />

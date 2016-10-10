@@ -1,9 +1,7 @@
 ﻿using Autofac;
 
 using DataAccess;
-using DataAccess.Mappings;
 using DataAccess.NHibernate;
-using DataAccess.Repositories;
 
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -23,10 +21,10 @@ namespace WebServicePoc.Infrastructure
             builder.Register<ISessionFactory>(i => CreateSessionFactory()).SingleInstance();
             builder.Register<ISession>(i => i.Resolve<ISessionFactory>().OpenSession()).InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(typeof(IProjectRepository).Assembly)
-                              .Where(t => t.Name.EndsWith("Repository"))
-                              .AsImplementedInterfaces()
-                              .InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(DataAccessAssembly).Assembly)
+                .Where(t => t.Name.EndsWith("Repository"))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
         }
 
         private static ISessionFactory CreateSessionFactory()
@@ -34,32 +32,26 @@ namespace WebServicePoc.Infrastructure
             return
                 Fluently.Configure()
                     .Database(
-                        MsSqlConfiguration.MsSql2012
-                            .ConnectionString(ConnectionString)
-                            .DefaultSchema("dbo")
-                            .ShowSql())
-                    .Mappings(m => m
-                        .FluentMappings.AddFromAssemblyOf<ProjectMap>())
+                        MsSqlConfiguration.MsSql2012.ConnectionString(ConnectionString).DefaultSchema("dbo").ShowSql())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DataAccessAssembly>())
                     .ExposeConfiguration(
                         c =>
-                        {
-                            c.DataBaseIntegration(
-                                i =>
-                                {
-                                    i.AutoCommentSql = true;
-                                    i.LogFormattedSql = true;
-                                    
-                                    // i.LogSqlInConsole = true;
-                                });
-                            /*
-                                                            c.SetProperty(
-                                                                "nhibernate-logger",
-                                                                "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
-                            */
-                            c.AddDddListeners();
-                        })
-                    .BuildConfiguration()
-                    .BuildSessionFactory();
+                            {
+                                c.DataBaseIntegration(
+                                    i =>
+                                        {
+                                            i.AutoCommentSql = true;
+                                            i.LogFormattedSql = true;
+
+                                            // i.LogSqlInConsole = true;
+                                        });
+                                /*
+                                                                c.SetProperty(
+                                                                    "nhibernate-logger",
+                                                                    "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
+                                */
+                                c.AddDddListeners();
+                            }).BuildConfiguration().BuildSessionFactory();
         }
     }
 }
