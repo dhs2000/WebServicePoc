@@ -6,11 +6,15 @@ using FluentValidation.Results;
 
 using MediatR;
 
+using NLog;
+
 namespace WebServicePoc.Infrastructure
 {
     public class AsyncValidationRequestHandler<TRequest, TResponse> : IAsyncRequestHandler<TRequest, TResponse>
         where TRequest : IAsyncRequest<TResponse>
     {
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly IAsyncRequestHandler<TRequest, TResponse> innerHander;
 
         private readonly IValidator<TRequest>[] validators;
@@ -25,6 +29,11 @@ namespace WebServicePoc.Infrastructure
 
         public async Task<TResponse> Handle(TRequest message)
         {
+            if (Logger.IsDebugEnabled)
+            {
+                Logger.Debug("Validating request ('{0}' / {1})", message.GetType().FullName, message.GetHashCode());
+            }
+
             var context = new ValidationContext(message);
 
             ValidationFailure[] failures =
@@ -36,6 +45,11 @@ namespace WebServicePoc.Infrastructure
             if (failures.Any())
             {
                 throw new ValidationException(failures);
+            }
+
+            if (Logger.IsDebugEnabled)
+            {
+                Logger.Debug("Validated ('{0}' / {1})", message.GetType().FullName, message.GetHashCode());
             }
 
             return await this.innerHander.Handle(message);

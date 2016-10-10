@@ -2,20 +2,23 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-using DataAccess;
 using DataAccess.Repositories;
 
 using DomainModel;
 
 using MediatR;
 
+using NLog;
+
 namespace ApplicationServices.Projects
 {
     public class CreateProjectCommandHandler : IAsyncRequestHandler<CreateProjectCommand, Unit>
     {
-        private readonly IProjectRepository projectRepository;
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly IFileRepository fileRepository;
+
+        private readonly IProjectRepository projectRepository;
 
         public CreateProjectCommandHandler(IProjectRepository projectRepository, IFileRepository fileRepository)
         {
@@ -35,7 +38,7 @@ namespace ApplicationServices.Projects
 
         public Task<Unit> Handle(CreateProjectCommand message)
         {
-            Debug.WriteLine(message);
+            Logger.Debug("Creating project  - {0}", message);
 
             var project = new DomainModel.Project(new Guid(message.Id), message.Name);
             project.AddItem(Guid.NewGuid(), "Item 1");
