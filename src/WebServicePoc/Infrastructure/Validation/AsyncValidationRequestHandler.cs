@@ -8,7 +8,7 @@ using MediatR;
 
 using NLog;
 
-namespace WebServicePoc.Infrastructure
+namespace WebServicePoc.Infrastructure.Validation
 {
     public class AsyncValidationRequestHandler<TRequest, TResponse> : IAsyncRequestHandler<TRequest, TResponse>
         where TRequest : IAsyncRequest<TResponse>
