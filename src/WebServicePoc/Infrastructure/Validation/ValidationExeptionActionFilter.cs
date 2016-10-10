@@ -6,7 +6,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace WebServicePoc.Infrastructure
+namespace WebServicePoc.Infrastructure.Validation
 {
     public class ValidationExeptionActionFilter : IAsyncActionFilter
     {

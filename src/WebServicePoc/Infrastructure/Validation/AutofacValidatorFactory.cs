@@ -4,7 +4,7 @@ using Autofac;
 
 using FluentValidation;
 
-namespace WebServicePoc.Infrastructure
+namespace WebServicePoc.Infrastructure.Validation
 {
     public class AutofacValidatorFactory : ValidatorFactoryBase
     {

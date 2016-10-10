@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using ApplicationServices;
 using ApplicationServices.Projects;
 
 using Autofac;
@@ -8,6 +9,8 @@ using Autofac.Core;
 using Autofac.Features.Variance;
 
 using MediatR;
+
+using WebServicePoc.Infrastructure.Validation;
 
 namespace WebServicePoc.Infrastructure
 {
@@ -17,12 +20,8 @@ namespace WebServicePoc.Infrastructure
         {
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsImplementedInterfaces();
-/*
-            builder.RegisterAssemblyTypes(typeof(GetProjectsRequest).Assembly)
-                .AsImplementedInterfaces();
-*/
 
-            builder.RegisterAssemblyTypes(typeof(GetProjectsRequestHandler).Assembly)
+            builder.RegisterAssemblyTypes(typeof(ApplicationServicesAssembly).Assembly)
                 .As(type => type.GetInterfaces()
                                .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(IAsyncRequestHandler<,>)))
                                .Select(interfaceType => new KeyedService("AsyncRequestHandler", interfaceType)))
@@ -40,6 +39,7 @@ namespace WebServicePoc.Infrastructure
                         var c = ctx.Resolve<IComponentContext>();
                         return t => c.Resolve(t);
                     });
+
             builder.Register<MultiInstanceFactory>(
                 ctx =>
                     {

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using WebServicePoc.Infrastructure;
+using WebServicePoc.Infrastructure.Validation;
 
 namespace WebServicePoc
 {
