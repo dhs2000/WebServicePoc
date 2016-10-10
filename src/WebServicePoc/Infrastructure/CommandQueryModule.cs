@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using ApplicationServices.Projects;
-
 using Autofac;
+
+using Contracts;
 
 using MediatR;
 
@@ -17,7 +17,7 @@ namespace WebServicePoc.Infrastructure
             get
             {
                 return
-                    typeof(GetProjectsRequest).Assembly.GetTypes()
+                    typeof(ContractsAssembly).Assembly.GetTypes()
                         .Where(t => t.IsClass && !t.IsAbstract && typeof(IAsyncRequest).IsAssignableFrom(t))
                         .ToArray();
             }
@@ -28,7 +28,7 @@ namespace WebServicePoc.Infrastructure
             get
             {
                 return
-                    typeof(GetProjectsRequest).Assembly.GetTypes()
+                    typeof(ContractsAssembly).Assembly.GetTypes()
                         .Where(t => t.IsClass && !t.IsAbstract && t.IsClosedTypeOf(typeof(IAsyncRequest<>)))
                         .ToArray();
             }

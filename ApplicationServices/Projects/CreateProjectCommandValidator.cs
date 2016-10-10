@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using Contracts;
+
+using FluentValidation;
 
 namespace ApplicationServices.Projects
 {

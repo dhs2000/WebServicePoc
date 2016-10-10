@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApplicationServices.Projects
+namespace Contracts
 {
     public class Project
     {

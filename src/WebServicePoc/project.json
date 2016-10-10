@@ -37,6 +37,9 @@
         "ApplicationServices": {
           "target": "project"
         },
+        "Contracts": {
+          "target": "project"
+        },
         "DataAccess": {
           "target": "project"
         },

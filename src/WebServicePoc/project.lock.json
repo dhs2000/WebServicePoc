@@ -2263,9 +2263,13 @@
       "ApplicationServices/1.0.0": {
         "type": "project",
         "dependencies": {
+          "Contracts": "1.0.0",
           "DataAccess": "1.0.0",
           "DomainModel": "1.0.0"
         }
+      },
+      "Contracts/1.0.0": {
+        "type": "project"
       },
       "DataAccess/1.0.0": {
         "type": "project",
@@ -7003,6 +7007,10 @@
       "type": "project",
       "msbuildProject": "../../ApplicationServices/ApplicationServices.csproj"
     },
+    "Contracts/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../../Contracts/Contracts.csproj"
+    },
     "DataAccess/1.0.0": {
       "type": "project",
       "msbuildProject": "../../DataAccess/DataAccess.csproj"
@@ -7042,6 +7050,7 @@
     ],
     ".NETFramework,Version=v4.6.1": [
       "ApplicationServices",
+      "Contracts",
       "DataAccess",
       "DomainModel",
       "System.Data >= 4.0.0"

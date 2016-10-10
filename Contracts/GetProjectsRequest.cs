@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ApplicationServices.Projects
+namespace Contracts
 {
     public class GetProjectsRequest : IAsyncRequest<GetProjectsResponse>
     {
