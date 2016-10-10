@@ -18,7 +18,6 @@ namespace WebServicePoc.Infrastructure
             if (ex != null)
             {
                 Debug.WriteLine($"Validation error - {ex.Message}");
-                context.Result = new BadRequestObjectResult(ex.Errors);
                 executedContext.ExceptionHandled = true;
                 executedContext.Result = new BadRequestObjectResult(ex.Errors);
             }

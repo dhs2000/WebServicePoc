@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ApplicationServices.Projects
+﻿namespace Contracts
 {
     public class GetProjectsResponse
     {

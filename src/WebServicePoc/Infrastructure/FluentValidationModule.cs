@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-using ApplicationServices.Projects;
+using ApplicationServices;
 
 using Autofac;
 
@@ -15,7 +15,7 @@ namespace WebServicePoc.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AutofacValidatorFactory>().As<IValidatorFactory>().SingleInstance();
-            RegisterAssemblyValidators(builder, typeof(GetProjectsRequest).Assembly);
+            RegisterAssemblyValidators(builder, typeof(ApplicationServicesAssembly).Assembly);
         }
 
         private static void RegisterAssemblyValidators(ContainerBuilder builder, Assembly assembly)

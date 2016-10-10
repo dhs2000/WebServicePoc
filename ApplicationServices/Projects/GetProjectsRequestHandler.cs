@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Contracts;
+
 using DomainModel;
 
 using MediatR;
 
 using NHibernate;
 using NHibernate.Criterion;
+
+using Project = Contracts.Project;
 
 namespace ApplicationServices.Projects
 {

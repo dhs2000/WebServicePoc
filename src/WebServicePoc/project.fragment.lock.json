@@ -23,6 +23,24 @@
         }
       }
     },
+    "Contracts/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6.1",
+      "compile": {
+        "bin/Debug/Contracts.dll": {}
+      },
+      "runtime": {
+        "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
+        "bin/Debug/Contracts.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Contracts.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    },
     "DataAccess/1.0.0": {
       "type": "project",
       "framework": ".NETFramework,Version=v4.6.1",
