@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebServicePoc.Infrastructure
+namespace WebServicePoc.Infrastructure.RequestFactory
 {
     public interface IRequestTypeProvider
     {

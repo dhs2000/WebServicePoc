@@ -4,7 +4,7 @@ using AutoMapper;
 
 using NLog;
 
-namespace WebServicePoc.Infrastructure
+namespace WebServicePoc.Infrastructure.RequestFactory
 {
     public class RequestFactory : IRequestFactory
     {

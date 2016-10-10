@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using WebServicePoc.Infrastructure;
+using WebServicePoc.Infrastructure.Transactions;
+using WebServicePoc.Infrastructure.Validation;
 using NLog.Extensions.Logging;
 
 namespace WebServicePoc
@@ -47,7 +49,6 @@ namespace WebServicePoc
                 o =>
                     {
                         o.Filters.Add(typeof(ValidationExeptionActionFilter));
-                        o.Filters.Add(new DatabaseTransactionActionFilterFactory());
                     });
 
             // Add Autofac

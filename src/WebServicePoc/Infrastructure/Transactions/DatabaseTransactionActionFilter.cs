@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 using NHibernate;
 
-namespace WebServicePoc.Infrastructure
+namespace WebServicePoc.Infrastructure.Transactions
 {
     public class DatabaseTransactionActionFilter : IAsyncActionFilter
     {
