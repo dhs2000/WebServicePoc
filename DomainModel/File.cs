@@ -10,10 +10,6 @@ namespace DomainModel
 
         private string name;
 
-        protected File()
-        {
-        }
-
         public File(Guid id, string name)
         {
             if (name == null)
@@ -25,12 +21,17 @@ namespace DomainModel
             this.name = name;
         }
 
+        protected File()
+        {
+        }
+
         public virtual Guid Id
         {
             get
             {
                 return this.id;
             }
+
             protected set
             {
                 this.id = value;
@@ -43,6 +44,7 @@ namespace DomainModel
             {
                 return this.name;
             }
+
             protected set
             {
                 this.name = value;

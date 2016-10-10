@@ -12,10 +12,6 @@ namespace DomainModel
 
         private Project project;
 
-        protected ProjectItem()
-        {
-        }
-
         public ProjectItem(Guid id, string name, Project project)
         {
             if (project == null)
@@ -33,12 +29,17 @@ namespace DomainModel
             this.project = project;
         }
 
+        protected ProjectItem()
+        {
+        }
+
         public virtual Guid Id
         {
             get
             {
                 return this.id;
             }
+
             protected internal set
             {
                 this.id = value;
@@ -53,6 +54,7 @@ namespace DomainModel
             {
                 return this.name;
             }
+
             protected set
             {
                 this.name = value;
@@ -65,6 +67,7 @@ namespace DomainModel
             {
                 return this.project;
             }
+
             protected set
             {
                 this.project = value;
