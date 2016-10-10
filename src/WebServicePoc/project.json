@@ -3,6 +3,7 @@
     "Autofac": "4.1.1",
     "Autofac.Extensions.DependencyInjection": "4.0.0",
     "AutoMapper": "5.1.1",
+    "CommandLineParser": "1.9.71",
     "dnx-clr-win-x64": "1.0.0-rc1-update2",
     "FluentNHibernate": "2.0.3",
     "FluentValidation": "6.2.1",
@@ -10,7 +11,6 @@
     "MediatR": "2.1.0",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.Routing": "1.0.1",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
@@ -21,6 +21,7 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "NHibernate": "4.0.4.4000",
     "NLog": "4.3.9",
+    "ServiceFabric.ServiceBus.Services": "4.0.0",
     "StyleCop.Error.MSBuild": "1.0.0",
     "StyleCop.MSBuild": "4.7.54"
   },
@@ -63,6 +64,5 @@
   },
 
   "scripts": {
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
