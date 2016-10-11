@@ -1,12 +1,4 @@
-﻿using System.IO;
-
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.ServiceFabric.Services.Runtime;
-using System.Threading;
-using WebServicePoc.ServiceFabric;
-using Microsoft.Extensions.Configuration;
-using Autofac;
-using WebServicePoc.Infrastructure;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace WebServicePoc
 {
