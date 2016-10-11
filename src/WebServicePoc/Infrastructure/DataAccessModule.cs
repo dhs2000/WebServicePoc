@@ -19,7 +19,8 @@ namespace WebServicePoc.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register<ISessionFactory>(i => CreateSessionFactory()).SingleInstance();
-            builder.Register<ISession>(i => i.Resolve<ISessionFactory>().OpenSession()).InstancePerLifetimeScope();
+            builder.RegisterType<DomainEventsIntercepter>().As<IInterceptor>().InstancePerLifetimeScope();
+            builder.Register<ISession>(i => i.Resolve<ISessionFactory>().OpenSession(i.Resolve<IInterceptor>())).InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(typeof(DataAccessAssembly).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))

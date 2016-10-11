@@ -7,7 +7,7 @@ using DomainModel.Common;
 
 namespace DomainModel
 {
-    public class Project : IAggregateRoot
+    public class Project : BaseEntity, IAggregateRoot
     {
         private readonly IList<ProjectItem> items = new List<ProjectItem>();
 
@@ -24,6 +24,8 @@ namespace DomainModel
 
             this.id = id;
             this.name = name;
+
+            this.RaiseEvent(new ProjectCreatedEvent(id));
         }
 
         protected Project()
