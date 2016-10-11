@@ -13,7 +13,6 @@ using WebServicePoc.Infrastructure;
 using NLog.Extensions.Logging;
 using WebServicePoc.Infrastructure.Transactions;
 using WebServicePoc.Infrastructure.Validation;
-using NLog.Extensions.Logging;
 
 namespace WebServicePoc
 {
