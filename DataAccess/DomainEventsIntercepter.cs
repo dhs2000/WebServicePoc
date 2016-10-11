@@ -13,16 +13,16 @@ namespace DataAccess
     {
         private readonly List<IEvent> events = new List<IEvent>();
 
-        private readonly IEventsPublisher eventsPublisher;
+        private readonly IEventsDispatcher eventsDispatcher;
 
-        public DomainEventsIntercepter(IEventsPublisher eventsPublisher)
+        public DomainEventsIntercepter(IEventsDispatcher eventsDispatcher)
         {
-            if (eventsPublisher == null)
+            if (eventsDispatcher == null)
             {
-                throw new ArgumentNullException(nameof(eventsPublisher));
+                throw new ArgumentNullException(nameof(eventsDispatcher));
             }
 
-            this.eventsPublisher = eventsPublisher;
+            this.eventsDispatcher = eventsDispatcher;
         }
 
         public override void AfterTransactionCompletion(ITransaction tx)
@@ -30,7 +30,7 @@ namespace DataAccess
             Debug.Assert(!tx.IsActive, "Transaction should be inactive.");
             if (tx.WasCommitted)
             {
-                this.eventsPublisher.Publish(this.events);
+                this.eventsDispatcher.Publish(this.events);
             }
 
             this.events.Clear();

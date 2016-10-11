@@ -9,11 +9,11 @@ using DomainModel.Common;
 
 namespace WebServicePoc.Infrastructure.ServiceBus
 {
-    public class ServiceBusEventsPublisher : IEventsPublisher
+    public class ServiceBusEventsDispatcher : IEventsDispatcher
     {
         private readonly IBus bus;
 
-        public ServiceBusEventsPublisher(IBus bus)
+        public ServiceBusEventsDispatcher(IBus bus)
         {
             if (bus == null)
             {
