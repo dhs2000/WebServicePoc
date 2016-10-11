@@ -8,7 +8,7 @@ namespace WebServicePoc.Infrastructure.ServiceBus
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ServiceBusEventsPublisher>().As<IEventsPublisher>().InstancePerLifetimeScope();
+            builder.RegisterType<ServiceBusEventsDispatcher>().As<IEventsDispatcher>().InstancePerLifetimeScope();
 
             builder.RegisterType<Bus>().As<IBus>().SingleInstance();
 

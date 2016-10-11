@@ -4,7 +4,7 @@ using DomainModel.Common;
 
 namespace DataAccess.Tests
 {
-    public class EventsPublisherStub : IEventsPublisher
+    public class EventsDispatcherStub : IEventsDispatcher
     {
         private readonly List<IEvent> events = new List<IEvent>();
 

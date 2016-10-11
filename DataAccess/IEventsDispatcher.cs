@@ -4,7 +4,7 @@ using DomainModel.Common;
 
 namespace DataAccess
 {
-    public interface IEventsPublisher
+    public interface IEventsDispatcher
     {
         void Publish(IEnumerable<IEvent> newEvents);
     }

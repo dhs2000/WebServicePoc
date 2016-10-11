@@ -37,7 +37,7 @@ namespace DataAccess.Tests
         [Test]
         public void ShouldPublishEventsOnCommit()
         {
-            var eventsPublisherStub = new EventsPublisherStub();
+            var eventsPublisherStub = new EventsDispatcherStub();
 
             using (ISession session = this.SessionFactory.OpenSession(new DomainEventsIntercepter(eventsPublisherStub)))
             {
@@ -59,7 +59,7 @@ namespace DataAccess.Tests
         [Test]
         public void ShouldNotPublishEventsOnRollback()
         {
-            var eventsPublisherStub = new EventsPublisherStub();
+            var eventsPublisherStub = new EventsDispatcherStub();
 
             using (ISession session = this.SessionFactory.OpenSession(new DomainEventsIntercepter(eventsPublisherStub)))
             {

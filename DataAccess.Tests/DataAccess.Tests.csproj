@@ -111,7 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainEventsTests.cs" />
-    <Compile Include="EventsPublisherStub.cs" />
+    <Compile Include="EventsDispatcherStub.cs" />
     <Compile Include="NHibernateBootstrapper.cs" />
     <Compile Include="ProjectMapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
