@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Fabric;
-using System.Fabric.Query;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
-using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using WebServicePoc;
+using System;
 
 namespace WebServicePoc.ServiceFabric
 {
@@ -20,12 +15,20 @@ namespace WebServicePoc.ServiceFabric
     {
         private readonly string _endpointName;
 
+        private readonly IWebHostBuilder _webHostBuilder;
+
         private IWebHost _webHost;
 
-        public StatelessWebService(StatelessServiceContext serviceContext, string endpointName)
+        public StatelessWebService(StatelessServiceContext serviceContext, string endpointName, IWebHostBuilder webHostBuilder = null)
                 : base(serviceContext)
+        { 
+            if (string.IsNullOrEmpty(endpointName))
             {
-            _endpointName = endpointName;
+                throw new ArgumentNullException(nameof(endpointName));
+            }
+
+            this._endpointName = endpointName;
+            this._webHostBuilder = webHostBuilder ?? new WebHostBuilder();
         }
 
         #region StatelessService
@@ -41,27 +44,24 @@ namespace WebServicePoc.ServiceFabric
 
         void ICommunicationListener.Abort()
         {
-            _webHost?.Dispose();
+            this._webHost?.Dispose();
         }
 
         Task ICommunicationListener.CloseAsync(CancellationToken cancellationToken)
         {
-            _webHost?.Dispose();
+            this._webHost?.Dispose();
 
             return Task.FromResult(true);
         }
 
         Task<string> ICommunicationListener.OpenAsync(CancellationToken cancellationToken)
         {
-            var endpoint = FabricRuntime.GetActivationContext().GetEndpoint(_endpointName);
+            var endpoint = FabricRuntime.GetActivationContext().GetEndpoint(this._endpointName);
+            string serverUrl = $"{endpoint.Protocol}://{FabricRuntime.GetNodeContext().IPAddressOrFQDN}:{endpoint.Port}/webservicepoc";
 
-            string serverUrl = $"{endpoint.Protocol}://{FabricRuntime.GetNodeContext().IPAddressOrFQDN}:{endpoint.Port}";
-
-            _webHost = new WebHostBuilder().UseKestrel()
-                                           .UseContentRoot(Directory.GetCurrentDirectory())
-                                           .UseStartup<Startup>()
-                                           .UseUrls(serverUrl)
-                                           .Build();
+            this._webHost = this._webHostBuilder
+                .UseUrls(serverUrl)
+                .Build();
 
             _webHost.Start();
 

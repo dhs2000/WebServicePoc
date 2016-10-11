@@ -5,7 +5,7 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.6.1",
       "compile": {
-        "bin/x64/Debug/ApplicationServices.dll": {}
+        "bin/Debug/ApplicationServices.dll": {}
       },
       "runtime": {
         "../packages/FluentValidation.6.2.1.0/lib/Net45/FluentValidation.dll": {},
@@ -13,10 +13,10 @@
         "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
         "../packages/NHibernate.4.0.4.4000/lib/net40/NHibernate.dll": {},
         "../packages/NLog.4.3.9/lib/net45/NLog.dll": {},
-        "bin/x64/Debug/ApplicationServices.dll": {}
+        "bin/Debug/ApplicationServices.dll": {}
       },
       "contentFiles": {
-        "bin/x64/Debug/ApplicationServices.pdb": {
+        "bin/Debug/ApplicationServices.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -27,17 +27,17 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.6.1",
       "compile": {
-        "bin/x64/Debug/DataAccess.dll": {}
+        "bin/Debug/DataAccess.dll": {}
       },
       "runtime": {
         "../packages/FluentNHibernate.2.0.3.0/lib/net40/FluentNHibernate.dll": {},
         "../packages/Iesi.Collections.4.0.1.4000/lib/net40/Iesi.Collections.dll": {},
         "../packages/NHibernate.4.0.4.4000/lib/net40/NHibernate.dll": {},
         "../packages/NLog.4.3.9/lib/net45/NLog.dll": {},
-        "bin/x64/Debug/DataAccess.dll": {}
+        "bin/Debug/DataAccess.dll": {}
       },
       "contentFiles": {
-        "bin/x64/Debug/DataAccess.pdb": {
+        "bin/Debug/DataAccess.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -48,13 +48,13 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.6.1",
       "compile": {
-        "bin/x64/Debug/DomainModel.dll": {}
+        "bin/Debug/DomainModel.dll": {}
       },
       "runtime": {
-        "bin/x64/Debug/DomainModel.dll": {}
+        "bin/Debug/DomainModel.dll": {}
       },
       "contentFiles": {
-        "bin/x64/Debug/DomainModel.pdb": {
+        "bin/Debug/DomainModel.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

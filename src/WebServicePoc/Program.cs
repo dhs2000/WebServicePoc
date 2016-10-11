@@ -3,10 +3,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.ServiceFabric.Services.Runtime;
 using System.Threading;
-using System.Diagnostics;
-using System;
-using System.Linq;
 using WebServicePoc.ServiceFabric;
+using Microsoft.Extensions.Configuration;
+using Autofac;
+using WebServicePoc.Infrastructure;
 
 namespace WebServicePoc
 {
@@ -14,35 +14,14 @@ namespace WebServicePoc
     {
         public static void Main(string[] args)
         {
-            var argsParser = new CommandLine.Parser();
-            var cmdOptions = new ProgramOptions();
-            bool argsParseSucceeded = argsParser.ParseArguments(args, cmdOptions);
-            if (argsParseSucceeded && cmdOptions.Host == "service-fabric-host")
-            {
-                ServiceRuntime.RegisterServiceAsync("WebServicePocType", context => new StatelessWebService(context, "ServiceEndpoint")).GetAwaiter().GetResult();
-                Thread.Sleep(Timeout.Infinite);
-            }
-            else
-            {
-                IWebHost host = new WebHostBuilder().UseKestrel()
-                    .UseContentRoot(Directory.GetCurrentDirectory())
-                    .UseStartup<Startup>()
-                    .Build();
+            var configurationBuilder = new ConfigurationBuilder();
+            var configurationData = configurationBuilder
+               .AddEnvironmentVariables()
+               .AddCommandLine(args)
+               .Build();
 
-                host.Run();
-            }
+            var webServiceHostBootStrap = new WebServiceHostBootstrapper(configurationData);
+            webServiceHostBootStrap.Run();
         }
-
-        //public static void Main(string[] args)
-        //{
-        //    IWebHost host =
-        //        new WebHostBuilder().UseKestrel()
-        //            .UseContentRoot(Directory.GetCurrentDirectory())
-        //            .UseIISIntegration()
-        //            .UseStartup<Startup>()
-        //            .Build();
-
-        //    host.Run();
-        //}
     }
 }
