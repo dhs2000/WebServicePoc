@@ -43,8 +43,8 @@ namespace WebServicePoc
             {
                 string serverUrl = this.configurationData["WebServiceUrl"];
                 webHostBuilder
-                    .UseUrls(serverUrl)
-                    .Build();
+                    .UseUrls(serverUrl);
+
                 using (var webHost = webHostBuilder.Build())
                 {
                     webHost.Start();
