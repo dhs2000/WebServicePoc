@@ -50,10 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BaseEntity.cs" />
     <Compile Include="Common\IAggregateRoot.cs" />
     <Compile Include="Common\IAggregateRootProvider.cs" />
+    <Compile Include="Common\IEvent.cs" />
+    <Compile Include="Common\IEventsProvider.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="ProjectCreatedEvent.cs" />
     <Compile Include="ProjectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
