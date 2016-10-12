@@ -1,4 +1,4 @@
-﻿namespace WebServicePoc.Infrastructure.RequestFactory
+﻿namespace Infrastructure.RequestFactory
 {
     public interface IRequestFactory
     {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace WebServicePoc.Infrastructure.ServiceBus
+namespace Infrastructure.ServiceBus
 {
     public interface IMessageSerializer
     {

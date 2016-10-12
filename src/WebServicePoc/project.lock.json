@@ -2327,6 +2327,9 @@
       },
       "DomainModel/1.0.0": {
         "type": "project"
+      },
+      "Infrastructure/1.0.0": {
+        "type": "project"
       }
     }
   },
@@ -7098,6 +7101,10 @@
     "DomainModel/1.0.0": {
       "type": "project",
       "msbuildProject": "../../DomainModel/DomainModel.csproj"
+    },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../../Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7136,6 +7143,7 @@
       "Contracts",
       "DataAccess",
       "DomainModel",
+      "Infrastructure",
       "System.Data >= 4.0.0"
     ]
   },

@@ -2,18 +2,17 @@
 using System.Linq;
 
 using ApplicationServices;
-using ApplicationServices.Projects;
 
 using Autofac;
 using Autofac.Core;
 using Autofac.Features.Variance;
 
+using Infrastructure.Transactions;
+using Infrastructure.Validation;
+
 using MediatR;
 
-using WebServicePoc.Infrastructure.Transactions;
-using WebServicePoc.Infrastructure.Validation;
-
-namespace WebServicePoc.Infrastructure
+namespace Infrastructure
 {
     public class MediatorModule : Module
     {
@@ -24,7 +23,7 @@ namespace WebServicePoc.Infrastructure
 
             builder.RegisterAssemblyTypes(typeof(ApplicationServicesAssembly).Assembly)
                 .As(type => type.GetInterfaces()
-                               .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(IAsyncRequestHandler<,>)))
+                               .Where(interfaceType => TypeExtensions.IsClosedTypeOf(interfaceType, typeof(IAsyncRequestHandler<,>)))
                                .Select(interfaceType => new KeyedService("AsyncRequestHandler", interfaceType)))
                 .InstancePerLifetimeScope();
 

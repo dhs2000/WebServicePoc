@@ -5,7 +5,7 @@ using System.Reflection;
 
 using Microsoft.ServiceBus.Messaging;
 
-namespace WebServicePoc.Infrastructure.ServiceBus
+namespace Infrastructure.ServiceBus
 {
     public class BrokeredMessageFactory : IBrokeredMessageFactory
     {
@@ -13,7 +13,9 @@ namespace WebServicePoc.Infrastructure.ServiceBus
 
         private readonly IMessageSerializer messageSerializer;
 
-        public BrokeredMessageFactory(ICorrelationIdProvider correlationIdProvider, IMessageSerializer messageSerializer)
+        public BrokeredMessageFactory(
+            ICorrelationIdProvider correlationIdProvider,
+            IMessageSerializer messageSerializer)
         {
             this.correlationIdProvider = correlationIdProvider;
             this.messageSerializer = messageSerializer;
@@ -32,6 +34,7 @@ namespace WebServicePoc.Infrastructure.ServiceBus
                 brokeredMessage.ContentType = @event.GetType().FullName;
                 brokeredMessage.Properties["MessageType"] = @event.GetType().FullName;
             }
+
             return brokeredMessage;
         }
 

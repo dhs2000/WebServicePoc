@@ -8,7 +8,7 @@ using FluentValidation;
 
 using Module = Autofac.Module;
 
-namespace WebServicePoc.Infrastructure.Validation
+namespace Infrastructure.Validation
 {
     public class FluentValidationModule : Module
     {

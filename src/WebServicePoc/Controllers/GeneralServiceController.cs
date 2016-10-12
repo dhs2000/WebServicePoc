@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using Infrastructure.RequestFactory;
+
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
-
-using WebServicePoc.Infrastructure.RequestFactory;
 
 namespace WebServicePoc.Controllers
 {

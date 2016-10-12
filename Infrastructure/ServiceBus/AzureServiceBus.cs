@@ -4,19 +4,22 @@ using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 
-namespace WebServicePoc.Infrastructure.ServiceBus
+namespace Infrastructure.ServiceBus
 {
     public class AzureServiceBus : IBus
     {
-        private readonly string connectionString;
+        private readonly IBrokeredMessageFactory brokeredMessageFactory;
 
-        private readonly string topicName;
+        private readonly string connectionString;
 
         private readonly Lazy<Task<TopicClient>> topicClient;
 
-        private readonly IBrokeredMessageFactory brokeredMessageFactory;
+        private readonly string topicName;
 
-        public AzureServiceBus(string connectionString, string topicName, IBrokeredMessageFactory brokeredMessageFactory)
+        public AzureServiceBus(
+            string connectionString,
+            string topicName,
+            IBrokeredMessageFactory brokeredMessageFactory)
         {
             if (brokeredMessageFactory == null)
             {
@@ -37,22 +40,8 @@ namespace WebServicePoc.Infrastructure.ServiceBus
             this.topicName = topicName;
             this.brokeredMessageFactory = brokeredMessageFactory;
 
-            this.topicClient = new Lazy<Task<TopicClient>>(() => CreateTopicClientAsync(this.connectionString, this.topicName));
-        }
-
-        private static async Task<TopicClient> CreateTopicClientAsync(string connectionString, string topicName)
-        {
-            var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
-            bool topicExist = await namespaceManager.TopicExistsAsync(topicName);
-            if (!topicExist)
-            {
-                var topicDescription = new TopicDescription(topicName);
-                await namespaceManager.CreateTopicAsync(topicDescription);
-            }
-
-            TopicDescription description = await namespaceManager.GetTopicAsync(topicName);
-            TopicClient topicClient = TopicClient.CreateFromConnectionString(connectionString, description.Path);
-            return topicClient;
+            this.topicClient =
+                new Lazy<Task<TopicClient>>(() => CreateTopicClientAsync(this.connectionString, this.topicName));
         }
 
         public Task PublishAsync(params object[] events)
@@ -63,6 +52,21 @@ namespace WebServicePoc.Infrastructure.ServiceBus
             }
 
             return this.PublishInternalAsync(events);
+        }
+
+        private static async Task<TopicClient> CreateTopicClientAsync(string connectionString, string topicName)
+        {
+            NamespaceManager namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
+            bool topicExist = await namespaceManager.TopicExistsAsync(topicName);
+            if (!topicExist)
+            {
+                var topicDescription = new TopicDescription(topicName);
+                await namespaceManager.CreateTopicAsync(topicDescription);
+            }
+
+            TopicDescription description = await namespaceManager.GetTopicAsync(topicName);
+            TopicClient topicClient = TopicClient.CreateFromConnectionString(connectionString, description.Path);
+            return topicClient;
         }
 
         private async Task PublishInternalAsync(object[] events)

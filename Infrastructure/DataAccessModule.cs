@@ -9,7 +9,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 
-namespace WebServicePoc.Infrastructure
+namespace Infrastructure
 {
     public class DataAccessModule : Module
     {
@@ -38,20 +38,19 @@ namespace WebServicePoc.Infrastructure
                     .ExposeConfiguration(
                         c =>
                             {
-                                c.DataBaseIntegration(
+                                c.AddDddListeners();
+                                ConfigurationExtensions.DataBaseIntegration(
+                                    c, 
                                     i =>
                                         {
                                             i.AutoCommentSql = true;
                                             i.LogFormattedSql = true;
-
-                                            // i.LogSqlInConsole = true;
                                         });
                                 /*
-                                                                c.SetProperty(
-                                                                    "nhibernate-logger",
-                                                                    "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
+                                    c.SetProperty(
+                                        "nhibernate-logger",
+                                        "DataAccess.Tests.NLogLoggerFactory, DataAccess.Tests");
                                 */
-                                c.AddDddListeners();
                             }).BuildConfiguration().BuildSessionFactory();
         }
     }

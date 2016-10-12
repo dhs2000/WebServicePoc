@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using NLog;
 
-namespace WebServicePoc.Infrastructure.RequestFactory
+namespace Infrastructure.RequestFactory
 {
     public class RequestTypeProvider : IRequestTypeProvider
     {

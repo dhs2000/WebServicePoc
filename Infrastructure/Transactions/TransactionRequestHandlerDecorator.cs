@@ -8,7 +8,7 @@ using NHibernate;
 
 using NLog;
 
-namespace WebServicePoc.Infrastructure.Transactions
+namespace Infrastructure.Transactions
 {
     public class TransactionRequestHandlerDecorator<TRequest, TResponse> : IAsyncRequestHandler<TRequest, TResponse>
         where TRequest : IAsyncRequest<TResponse>

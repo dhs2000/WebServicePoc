@@ -1,6 +1,6 @@
 ﻿using Microsoft.ServiceBus.Messaging;
 
-namespace WebServicePoc.Infrastructure.ServiceBus
+namespace Infrastructure.ServiceBus
 {
     public interface IBrokeredMessageFactory
     {

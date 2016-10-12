@@ -78,6 +78,32 @@
           "copyToOutput": true
         }
       }
+    },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6.1",
+      "compile": {
+        "bin/Debug/Infrastructure.dll": {}
+      },
+      "runtime": {
+        "../packages/AutoMapper.5.1.1/lib/net45/AutoMapper.dll": {},
+        "../packages/Autofac.4.1.1/lib/net45/Autofac.dll": {},
+        "../packages/FluentNHibernate.2.0.3.0/lib/net40/FluentNHibernate.dll": {},
+        "../packages/FluentValidation.6.2.1.0/lib/Net45/FluentValidation.dll": {},
+        "../packages/Iesi.Collections.4.0.0.4000/lib/net40/Iesi.Collections.dll": {},
+        "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
+        "../packages/NHibernate.4.0.4.4000/lib/net40/NHibernate.dll": {},
+        "../packages/NLog.4.3.10/lib/net45/NLog.dll": {},
+        "../packages/WindowsAzure.ServiceBus.3.4.0/lib/net45-full/Microsoft.ServiceBus.dll": {},
+        "bin/Debug/Infrastructure.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Infrastructure.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
     }
   }
 }

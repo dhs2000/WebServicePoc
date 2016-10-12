@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace WebServicePoc.Infrastructure.ServiceBus
+namespace Infrastructure.ServiceBus
 {
     public interface IBus
     {

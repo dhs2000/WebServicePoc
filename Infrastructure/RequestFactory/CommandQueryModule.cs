@@ -8,7 +8,7 @@ using Contracts;
 
 using MediatR;
 
-namespace WebServicePoc.Infrastructure.RequestFactory
+namespace Infrastructure.RequestFactory
 {
     public class CommandQueryModule : Module
     {

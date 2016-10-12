@@ -1,13 +1,17 @@
 ﻿using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+
+using Infrastructure;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using WebServicePoc.Infrastructure.Validation;
+
+using WebServicePoc.Infrastructure;
 
 namespace WebServicePoc
 {
@@ -46,7 +50,7 @@ namespace WebServicePoc
 
             // Add Autofac
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterAssemblyModules(this.GetType().Assembly);
+            containerBuilder.RegisterAssemblyModules(this.GetType().Assembly, typeof(InfrastructureAssembly).Assembly);
             containerBuilder.Populate(services);
             IContainer container = containerBuilder.Build();
 

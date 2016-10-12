@@ -2,7 +2,7 @@
 
 using DataAccess;
 
-namespace WebServicePoc.Infrastructure.ServiceBus
+namespace Infrastructure.ServiceBus
 {
     public class ServiceBusModule : Module
     {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace WebServicePoc.Infrastructure.AutoMapper
+namespace Infrastructure.AutoMapper
 {
     public interface IMapperFactory
     {
