@@ -79,6 +79,12 @@ namespace Infrastructure.Messages
                         $"Can't map type '{type.FullName}' to the key '{key}'. Duplicate request name.");
                 }
 
+                if (!this.typeMappings.TryAdd(type.FullName, type))
+                {
+                    throw new InvalidOperationException(
+                        $"Can't map type '{type.FullName}' to the key '{type.FullName}'. Duplicate request name.");
+                }
+
                 if (key == type.Name)
                 {
                     continue;
