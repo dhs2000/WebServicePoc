@@ -29,8 +29,6 @@ namespace WebServicePoc
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddNLog();
-            loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
             app.UseMvc();
             env.ConfigureNLog("nlog.config");
