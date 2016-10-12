@@ -5,7 +5,6 @@ using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
-using WebServicePoc.Infrastructure;
 using WebServicePoc.Infrastructure.RequestFactory;
 
 namespace WebServicePoc.Controllers
