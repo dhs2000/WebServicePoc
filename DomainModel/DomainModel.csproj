@@ -55,6 +55,7 @@
     <Compile Include="Common\IAggregateRootProvider.cs" />
     <Compile Include="Common\IEvent.cs" />
     <Compile Include="Common\IEventsProvider.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectCreatedEvent.cs" />

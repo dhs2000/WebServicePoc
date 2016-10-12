@@ -26,7 +26,8 @@
     "NLog.Extensions.Logging": "1.0.0-rtm-alpha4",
     "ServiceFabric.ServiceBus.Services": "4.0.0",
     "StyleCop.Error.MSBuild": "1.0.0",
-    "StyleCop.MSBuild": "4.7.54"
+    "StyleCop.MSBuild": "4.7.54",
+    "WindowsAzure.ServiceBus": "3.4.0"
   },
 
   "tools": {

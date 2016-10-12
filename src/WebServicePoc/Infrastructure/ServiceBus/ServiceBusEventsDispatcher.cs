@@ -30,7 +30,12 @@ namespace WebServicePoc.Infrastructure.ServiceBus
                 throw new ArgumentNullException(nameof(newEvents));
             }
 
-            this.bus.Send(newEvents.ToArray());
+            this.bus.PublishAsync(newEvents.Select(this.Map).ToArray());
+        }
+
+        private object Map(IEvent @event)
+        {
+            return @event;
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
 
-using DomainModel.Common;
-
 namespace DomainModel
 {
-    public class ProjectCreatedEvent : IEvent
+    public class ProjectCreatedEvent : Event
     {
         public ProjectCreatedEvent(Guid id)
         {
@@ -19,7 +17,7 @@ namespace DomainModel
 
         public override string ToString()
         {
-            return $"ProjectCreatedEvent {{ {nameof(this.Id)}: {this.Id} }}";
+            return $"ProjectCreatedEvent {{ {nameof(this.EventId)}: {this.EventId}, {nameof(this.Id)}: {this.Id} }}";
         }
     }
 }

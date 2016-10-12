@@ -1,16 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.ServiceFabric.Services.Runtime;
+
 using WebServicePoc.ServiceFabric;
 
 namespace WebServicePoc
 {
     internal sealed class WebServiceHostBootstrapper
     {
-        private IConfigurationRoot configurationData;
+        private readonly IConfigurationRoot configurationData;
 
         public WebServiceHostBootstrapper(IConfigurationRoot configurationData)
         {
@@ -24,28 +26,28 @@ namespace WebServicePoc
 
         public void Run()
         {
-            var webHostBuilder = new WebHostBuilder()
-                .UseWebListener()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>();
+            IWebHostBuilder webHostBuilder =
+                new WebHostBuilder().UseWebListener()
+                    .UseContentRoot(Directory.GetCurrentDirectory())
+                    .UseStartup<Startup>();
 
             if (this.configurationData["host"] == "service-fabric-host")
             {
                 ServiceRuntime.RegisterServiceAsync(
-                    "WebServicePocType", 
-                    context => {
-                        var statelessService = new StatelessWebService(context, "ServiceEndpoint", webHostBuilder);
-                        return statelessService;
-                }).GetAwaiter().GetResult();
+                    "WebServicePocType",
+                    context =>
+                        {
+                            var statelessService = new StatelessWebService(context, "ServiceEndpoint", webHostBuilder);
+                            return statelessService;
+                        }).GetAwaiter().GetResult();
                 Thread.Sleep(Timeout.Infinite);
             }
             else
             {
                 string serverUrl = this.configurationData["WebServiceUrl"];
-                webHostBuilder
-                    .UseUrls(serverUrl);
+                webHostBuilder.UseUrls(serverUrl);
 
-                using (var webHost = webHostBuilder.Build())
+                using (IWebHost webHost = webHostBuilder.Build())
                 {
                     webHost.Start();
                     Thread.Sleep(Timeout.Infinite);

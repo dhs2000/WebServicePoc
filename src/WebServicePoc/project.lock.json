@@ -2294,7 +2294,7 @@
           "lib/net46/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "WindowsAzure.ServiceBus/3.3.2": {
+      "WindowsAzure.ServiceBus/3.4.0": {
         "type": "package",
         "frameworkAssemblies": [
           "System.Runtime.Serialization",
@@ -2370,22 +2370,6 @@
         "lib/netstandard1.3/AutoMapper.xml",
         "lib/portable-net45+win8+wpa81/AutoMapper.dll",
         "lib/portable-net45+win8+wpa81/AutoMapper.xml"
-      ]
-    },
-    "CommandLineParser/1.9.71": {
-      "sha512": "4CHGZZnF5SofNvbdlvusIR42p6CfkiRc3yp6GbtlYRKeVd3KkoBJb4GqFLeOSE7VABTkoHflBw2ULNlaifPjow==",
-      "type": "package",
-      "path": "CommandLineParser/1.9.71",
-      "files": [
-        "CommandLineParser.1.9.71.nupkg.sha512",
-        "CommandLineParser.nuspec",
-        "lib/net35/CommandLine.dll",
-        "lib/net35/CommandLine.xml",
-        "lib/net40/CommandLine.dll",
-        "lib/net40/CommandLine.xml",
-        "lib/net45/CommandLine.dll",
-        "lib/net45/CommandLine.xml",
-        "readme.txt"
       ]
     },
     "dnx-clr-win-x64/1.0.0-rc1-update2": {
@@ -3714,7 +3698,7 @@
       ]
     },
     "NLog.Extensions.Logging/1.0.0-rtm-alpha4": {
-      "sha512": "hFVRGr94j+yo26zCF0VZcwCvCcYsG2GPQuUoqcvhVtxOadDroT04DiTRjCCrJ7d3GDfDoTNHAkjtXPUZxSSaTQ==",
+      "sha512": "JnFfDSMKCzOivmqKW6iZLXofINUUZWGgOWavamnsjacLRrNiT0uof3uIh8oqo4RXjrOdhg5cSRnQcpZ4YrSaWw==",
       "type": "package",
       "path": "NLog.Extensions.Logging/1.0.0-rtm-alpha4",
       "files": [
@@ -7086,12 +7070,12 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "WindowsAzure.ServiceBus/3.3.2": {
-      "sha512": "u1l+SaQ1Ao+55iLrGhn3JsIws6Y6ERQCU9uuwhs6JCoqPZ0o2r3kCAnzW/bCCWlLYbJc1GVSQF8kM3ws/QUysg==",
+    "WindowsAzure.ServiceBus/3.4.0": {
+      "sha512": "ZNNXKuiHk97qTgpVtEL12EcUhuGF8jDE+OJ7anB1f/rZEVWpThTpeJDSiM9JEzMRRqYC6w0RCLeXbNwfElsiHg==",
       "type": "package",
-      "path": "WindowsAzure.ServiceBus/3.3.2",
+      "path": "WindowsAzure.ServiceBus/3.4.0",
       "files": [
-        "WindowsAzure.ServiceBus.3.3.2.nupkg.sha512",
+        "WindowsAzure.ServiceBus.3.4.0.nupkg.sha512",
         "WindowsAzure.ServiceBus.nuspec",
         "content/app.config.install.xdt",
         "content/web.config.install.xdt",
@@ -7144,6 +7128,7 @@
       "ServiceFabric.ServiceBus.Services >= 4.0.0",
       "StyleCop.Error.MSBuild >= 1.0.0",
       "StyleCop.MSBuild >= 4.7.54",
+      "WindowsAzure.ServiceBus >= 3.4.0",
       "dnx-clr-win-x64 >= 1.0.0-rc1-update2"
     ],
     ".NETFramework,Version=v4.6.1": [

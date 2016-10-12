@@ -10,7 +10,7 @@ namespace WebServicePoc.Infrastructure.ServiceBus
         {
             builder.RegisterType<ServiceBusEventsDispatcher>().As<IEventsDispatcher>().InstancePerLifetimeScope();
 
-            builder.RegisterType<Bus>().As<IBus>().SingleInstance();
+            builder.RegisterType<AzureServiceBus>().As<IBus>().SingleInstance();
 
             base.Load(builder);
         }

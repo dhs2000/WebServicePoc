@@ -1,9 +1,9 @@
-﻿using DomainModel.Common;
+﻿using System.Threading.Tasks;
 
 namespace WebServicePoc.Infrastructure.ServiceBus
 {
     public interface IBus
     {
-        void Send(params IEvent[] events);
+        Task PublishAsync(params object[] events);
     }
 }
