@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationServicesAssembly.cs" />
+    <Compile Include="EventHandlers\ProjectCreatedEventHandler.cs" />
     <Compile Include="Projects\CreateProjectCommandHandler.cs" />
     <Compile Include="Projects\CreateProjectCommandValidator.cs" />
     <Compile Include="Projects\GetProjectsRequestHandler.cs" />

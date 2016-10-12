@@ -8,9 +8,9 @@ using Contracts;
 
 using MediatR;
 
-namespace Infrastructure.RequestFactory
+namespace Infrastructure.Messages
 {
-    public class CommandQueryModule : Module
+    public class MessagesModule : Module
     {
         private static IEnumerable<Type> CommandTypes
         {
@@ -34,12 +34,24 @@ namespace Infrastructure.RequestFactory
             }
         }
 
+        private static IEnumerable<Type> EventTypes
+        {
+            get
+            {
+                return
+                    typeof(ContractsAssembly).Assembly.GetTypes()
+                        .Where(t => t.IsClass && !t.IsAbstract && typeof(IAsyncNotification).IsAssignableFrom(t))
+                        .ToArray();
+            }
+        }
+
         protected override void Load(ContainerBuilder builder)
         {
-            Type[] requestTypes = CommandTypes.Union(QueryTypes).ToArray();
+            Type[] requestTypes = CommandTypes.Union(QueryTypes).Union(EventTypes).ToArray();
 
-            builder.Register(i => new RequestTypeProvider(requestTypes)).As<IRequestTypeProvider>().SingleInstance();
-            builder.RegisterType<RequestFactory>().As<IRequestFactory>();
+            builder.Register(i => new MessageTypeProvider(requestTypes)).As<IMessagetTypeProvider>().SingleInstance();
+            builder.RegisterType<MessageFactory>().As<IMessageFactory>();
+            builder.RegisterType<MessageSerializer>().As<IMessageSerializer>();
         }
     }
 }

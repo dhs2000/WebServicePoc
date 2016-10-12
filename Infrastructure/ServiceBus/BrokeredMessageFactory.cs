@@ -3,6 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+using Infrastructure.Logging;
+using Infrastructure.Messages;
+
 using Microsoft.ServiceBus.Messaging;
 
 namespace Infrastructure.ServiceBus
@@ -23,17 +26,15 @@ namespace Infrastructure.ServiceBus
 
         public BrokeredMessage CreateMessage(object @event)
         {
-            BrokeredMessage brokeredMessage;
-            using (var memoryStream = new MemoryStream())
-            {
-                this.messageSerializer.Serialize(memoryStream, @event);
-                brokeredMessage = new BrokeredMessage(memoryStream);
-                brokeredMessage.CorrelationId = this.correlationIdProvider.CorrelationId.ToString("N");
-                brokeredMessage.MessageId = FindMessageId(@event);
+            var memoryStream = new MemoryStream();
 
-                brokeredMessage.ContentType = @event.GetType().FullName;
-                brokeredMessage.Properties["MessageType"] = @event.GetType().FullName;
-            }
+            this.messageSerializer.Serialize(memoryStream, @event);
+
+            var brokeredMessage = new BrokeredMessage(memoryStream, true);
+            brokeredMessage.CorrelationId = this.correlationIdProvider.CorrelationId.ToString("N");
+            brokeredMessage.MessageId = FindMessageId(@event);
+            brokeredMessage.ContentType = @event.GetType().FullName;
+            brokeredMessage.Properties["MessageType"] = @event.GetType().FullName;
 
             return brokeredMessage;
         }

@@ -4,10 +4,14 @@ using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 
+using NLog;
+
 namespace Infrastructure.ServiceBus
 {
     public class AzureServiceBus : IBus
     {
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly IBrokeredMessageFactory brokeredMessageFactory;
 
         private readonly string connectionString;
@@ -71,12 +75,20 @@ namespace Infrastructure.ServiceBus
 
         private async Task PublishInternalAsync(object[] events)
         {
-            TopicClient client = await this.topicClient.Value;
-            foreach (object @event in events)
+            try
             {
-                BrokeredMessage brokeredMessage = this.brokeredMessageFactory.CreateMessage(@event);
+                TopicClient client = await this.topicClient.Value;
+                foreach (object @event in events)
+                {
+                    BrokeredMessage brokeredMessage = this.brokeredMessageFactory.CreateMessage(@event);
 
-                await client.SendAsync(brokeredMessage);
+                    await client.SendAsync(brokeredMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error during publishing events. {0}", ex.Message);
+                throw;
             }
         }
     }

@@ -94,6 +94,7 @@
         "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
         "../packages/NHibernate.4.0.4.4000/lib/net40/NHibernate.dll": {},
         "../packages/NLog.4.3.10/lib/net45/NLog.dll": {},
+        "../packages/Newtonsoft.Json.9.0.1/lib/net45/Newtonsoft.Json.dll": {},
         "../packages/WindowsAzure.ServiceBus.3.4.0/lib/net45-full/Microsoft.ServiceBus.dll": {},
         "bin/Debug/Infrastructure.dll": {}
       },

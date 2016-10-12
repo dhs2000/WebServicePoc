@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructure.ServiceBus
+namespace Infrastructure.Logging
 {
     public interface ICorrelationIdProvider
     {

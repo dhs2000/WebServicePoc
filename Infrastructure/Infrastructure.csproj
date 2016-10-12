@@ -60,6 +60,10 @@
       <HintPath>..\packages\WindowsAzure.ServiceBus.3.4.0\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
@@ -85,19 +89,22 @@
     <Compile Include="AutoMapper\MapperFactory.cs" />
     <Compile Include="DataAccessModule.cs" />
     <Compile Include="InfrastructureAssembly.cs" />
+    <Compile Include="Logging\LoggingModule.cs" />
     <Compile Include="MediatorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestFactory\CommandQueryModule.cs" />
-    <Compile Include="RequestFactory\IRequestFactory.cs" />
-    <Compile Include="RequestFactory\IRequestTypeProvider.cs" />
-    <Compile Include="RequestFactory\RequestFactory.cs" />
-    <Compile Include="RequestFactory\RequestTypeProvider.cs" />
+    <Compile Include="Messages\MessagesModule.cs" />
+    <Compile Include="Messages\IMessageFactory.cs" />
+    <Compile Include="Messages\IMessagetTypeProvider.cs" />
+    <Compile Include="Messages\MessageFactory.cs" />
+    <Compile Include="Messages\MessageTypeProvider.cs" />
     <Compile Include="ServiceBus\AzureServiceBus.cs" />
     <Compile Include="ServiceBus\BrokeredMessageFactory.cs" />
+    <Compile Include="Logging\CorrelationIdProvider.cs" />
     <Compile Include="ServiceBus\IBrokeredMessageFactory.cs" />
     <Compile Include="ServiceBus\IBus.cs" />
-    <Compile Include="ServiceBus\ICorrelationIdProvider.cs" />
-    <Compile Include="ServiceBus\IMessageSerializer.cs" />
+    <Compile Include="Logging\ICorrelationIdProvider.cs" />
+    <Compile Include="Messages\IMessageSerializer.cs" />
+    <Compile Include="Messages\MessageSerializer.cs" />
     <Compile Include="ServiceBus\ServiceBusEventsDispatcher.cs" />
     <Compile Include="ServiceBus\ServiceBusModule.cs" />
     <Compile Include="Transactions\TransactionRequestHandlerDecorator.cs" />

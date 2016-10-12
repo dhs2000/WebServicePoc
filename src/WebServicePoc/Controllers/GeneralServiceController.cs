@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using Infrastructure.RequestFactory;
+using Infrastructure.Messages;
 
 using MediatR;
 
@@ -14,29 +14,29 @@ namespace WebServicePoc.Controllers
     {
         private readonly IMediator mediator;
 
-        private readonly IRequestFactory requestFactory;
+        private readonly IMessageFactory messageFactory;
 
-        public GeneralServiceController(IMediator mediator, IRequestFactory requestFactory)
+        public GeneralServiceController(IMediator mediator, IMessageFactory messageFactory)
         {
             if (mediator == null)
             {
                 throw new ArgumentNullException(nameof(mediator));
             }
 
-            if (requestFactory == null)
+            if (messageFactory == null)
             {
-                throw new ArgumentNullException(nameof(requestFactory));
+                throw new ArgumentNullException(nameof(messageFactory));
             }
 
             this.mediator = mediator;
-            this.requestFactory = requestFactory;
+            this.messageFactory = messageFactory;
         }
 
         // POST api/command/{CommandName}
         [HttpPost("command/{CommandName}")]
         public async Task<ActionResult> PostCommand(string commandName, [FromBody] dynamic body)
         {
-            dynamic request = this.requestFactory.CreateRequest(commandName, body);
+            dynamic request = this.messageFactory.CreateMessage(commandName, body);
             await this.mediator.SendAsync(request);
             return this.Ok();
         }
@@ -45,7 +45,7 @@ namespace WebServicePoc.Controllers
         [HttpPost("query/{QueryName}")]
         public async Task<dynamic> PostQuery(string queryName, [FromBody] dynamic body)
         {
-            dynamic request = this.requestFactory.CreateRequest(queryName, body);
+            dynamic request = this.messageFactory.CreateMessage(queryName, body);
             return await this.mediator.SendAsync(request);
         }
     }

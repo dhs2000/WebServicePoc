@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 using NLog;
 
-namespace Infrastructure.RequestFactory
+namespace Infrastructure.Messages
 {
-    public class RequestTypeProvider : IRequestTypeProvider
+    public class MessageTypeProvider : IMessagetTypeProvider
     {
         private const string CommandSufix = "Command";
 
@@ -17,7 +17,7 @@ namespace Infrastructure.RequestFactory
         private readonly ConcurrentDictionary<string, Type> typeMappings =
             new ConcurrentDictionary<string, Type>(StringComparer.InvariantCultureIgnoreCase);
 
-        public RequestTypeProvider(Type[] types)
+        public MessageTypeProvider(Type[] types)
         {
             if (types == null)
             {
@@ -77,6 +77,17 @@ namespace Infrastructure.RequestFactory
                 {
                     throw new InvalidOperationException(
                         $"Can't map type '{type.FullName}' to the key '{key}'. Duplicate request name.");
+                }
+
+                if (key == type.Name)
+                {
+                    continue;
+                }
+
+                if (!this.typeMappings.TryAdd(type.Name, type))
+                {
+                    throw new InvalidOperationException(
+                        $"Can't map type '{type.FullName}' to the key '{type.Name}'. Duplicate request name.");
                 }
             }
         }

@@ -2329,7 +2329,13 @@
         "type": "project"
       },
       "Infrastructure/1.0.0": {
-        "type": "project"
+        "type": "project",
+        "dependencies": {
+          "ApplicationServices": "1.0.0",
+          "Contracts": "1.0.0",
+          "DataAccess": "1.0.0",
+          "DomainModel": "1.0.0"
+        }
       }
     }
   },
@@ -7132,6 +7138,7 @@
       "NHibernate >= 4.0.4.4000",
       "NLog >= 4.3.9",
       "NLog.Extensions.Logging >= 1.0.0-rtm-alpha4",
+      "Newtonsoft.Json >= 9.0.1",
       "ServiceFabric.ServiceBus.Services >= 4.0.0",
       "StyleCop.Error.MSBuild >= 1.0.0",
       "StyleCop.MSBuild >= 4.7.54",
