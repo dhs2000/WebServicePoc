@@ -8,6 +8,8 @@ using DomainModel.Common;
 
 using Infrastructure.Messages;
 
+using Messages;
+
 using NLog;
 
 namespace Infrastructure.ServiceBus

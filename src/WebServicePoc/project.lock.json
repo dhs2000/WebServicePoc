@@ -7159,6 +7159,7 @@
       "DataAccess",
       "DomainModel",
       "Infrastructure",
+      "Messages",
       "System.Data >= 4.0.0"
     ]
   },

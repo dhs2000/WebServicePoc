@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructure.Messages
+namespace Messages
 {
     public interface IMessageTypeRepository
     {

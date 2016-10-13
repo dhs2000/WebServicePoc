@@ -10,6 +10,8 @@ namespace Infrastructure.ServiceBus
 
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<MessageSerializer>().As<IMessageSerializer>();
+
             builder.RegisterType<ServiceBusEventsDispatcher>().As<IEventsDispatcher>().InstancePerLifetimeScope();
 
             builder.RegisterType<BrokeredMessageFactory>().As<IBrokeredMessageFactory>();

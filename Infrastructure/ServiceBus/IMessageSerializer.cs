@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Infrastructure.Messages
+namespace Infrastructure.ServiceBus
 {
     public interface IMessageSerializer
     {

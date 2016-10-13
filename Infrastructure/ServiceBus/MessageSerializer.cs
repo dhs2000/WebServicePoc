@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace Infrastructure.Messages
+namespace Infrastructure.ServiceBus
 {
     public class MessageSerializer : IMessageSerializer
     {

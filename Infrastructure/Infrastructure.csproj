@@ -91,22 +91,17 @@
     <Compile Include="InfrastructureAssembly.cs" />
     <Compile Include="Logging\LoggingModule.cs" />
     <Compile Include="MediatorModule.cs" />
-    <Compile Include="Messages\IMessageTypesFinder.cs" />
-    <Compile Include="Messages\MessageTypesFinder.cs" />
+    <Compile Include="Messages\MessageMapperAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Messages\MessagesModule.cs" />
-    <Compile Include="Messages\IMessageFactory.cs" />
-    <Compile Include="Messages\IMessageTypeRepository.cs" />
-    <Compile Include="Messages\MessageFactory.cs" />
-    <Compile Include="Messages\MessageTypeRepository.cs" />
     <Compile Include="ServiceBus\AzureServiceBus.cs" />
     <Compile Include="ServiceBus\BrokeredMessageFactory.cs" />
     <Compile Include="Logging\CorrelationIdProvider.cs" />
     <Compile Include="ServiceBus\IBrokeredMessageFactory.cs" />
     <Compile Include="ServiceBus\IBus.cs" />
     <Compile Include="Logging\ICorrelationIdProvider.cs" />
-    <Compile Include="Messages\IMessageSerializer.cs" />
-    <Compile Include="Messages\MessageSerializer.cs" />
+    <Compile Include="ServiceBus\IMessageSerializer.cs" />
+    <Compile Include="ServiceBus\MessageSerializer.cs" />
     <Compile Include="ServiceBus\ServiceBusEventsDispatcher.cs" />
     <Compile Include="ServiceBus\ServiceBusModule.cs" />
     <Compile Include="Transactions\TransactionRequestHandlerDecorator.cs" />
@@ -133,6 +128,10 @@
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{82c8f16b-a6c5-4429-bcdc-48fe9ab75847}</Project>
       <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Messages\Messages.csproj">
+      <Project>{6a951cca-a718-4aa4-832c-b0e5ed90b13f}</Project>
+      <Name>Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

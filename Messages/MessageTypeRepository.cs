@@ -4,17 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using NLog;
-
-namespace Infrastructure.Messages
+namespace Messages
 {
     public class MessageTypeRepository : IMessageTypeRepository
     {
         private const string CommandSufix = "Command";
 
         private const string RequestSufix = "Request";
-
-        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly IMessageTypesFinder messageTypesFinder;
 
@@ -58,11 +54,6 @@ namespace Infrastructure.Messages
                 throw new ArgumentException($"Invalid request name '{name}'.", nameof(name));
             }
 
-            if (Logger.IsDebugEnabled)
-            {
-                Logger.Debug("Found request type - '{0}'", type.FullName);
-            }
-
             return type;
         }
 
@@ -83,8 +74,6 @@ namespace Infrastructure.Messages
                 {
                     key = type.Name;
                 }
-
-                Logger.Debug("Mapping request type '{0}' -> '{1}'", type.FullName, key);
 
                 if (!this.typeMappings.TryAdd(key, type))
                 {

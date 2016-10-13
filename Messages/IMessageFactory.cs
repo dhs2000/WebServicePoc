@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Messages
+﻿namespace Messages
 {
     public interface IMessageFactory
     {

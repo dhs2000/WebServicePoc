@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Infrastructure.Messages
+namespace Messages
 {
     public interface IMessageTypesFinder
     {
