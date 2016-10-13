@@ -105,6 +105,24 @@
           "copyToOutput": true
         }
       }
+    },
+    "Messages/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6.1",
+      "compile": {
+        "bin/Debug/Messages.dll": {}
+      },
+      "runtime": {
+        "../packages/MediatR.2.1.0/lib/net45/MediatR.dll": {},
+        "bin/Debug/Messages.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Messages.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
     }
   }
 }

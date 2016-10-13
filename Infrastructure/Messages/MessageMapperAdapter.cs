@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Messages;
+
 using IAutoMapper = AutoMapper.IMapper;
 
 namespace Infrastructure.Messages

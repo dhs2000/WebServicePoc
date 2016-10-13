@@ -2,6 +2,8 @@
 
 using Contracts;
 
+using Messages;
+
 namespace Infrastructure.Messages
 {
     public class MessagesModule : Module

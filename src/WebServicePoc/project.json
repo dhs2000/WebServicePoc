@@ -52,6 +52,9 @@
         },
         "Infrastructure": {
           "target": "project"
+        },
+        "Messages": {
+          "target": "project"
         }
       },
       "frameworkAssemblies": {

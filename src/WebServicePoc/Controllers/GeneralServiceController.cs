@@ -6,6 +6,7 @@ using Infrastructure.Messages;
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
+using Messages;
 
 namespace WebServicePoc.Controllers
 {

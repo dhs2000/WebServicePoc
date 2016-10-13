@@ -46,7 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IMapper.cs" />
+    <Compile Include="IMessageFactory.cs" />
+    <Compile Include="IMessageTypeRepository.cs" />
+    <Compile Include="IMessageTypesFinder.cs" />
+    <Compile Include="MessageFactory.cs" />
+    <Compile Include="MessageTypeRepository.cs" />
+    <Compile Include="MessageTypesFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
