@@ -2334,8 +2334,12 @@
           "ApplicationServices": "1.0.0",
           "Contracts": "1.0.0",
           "DataAccess": "1.0.0",
-          "DomainModel": "1.0.0"
+          "DomainModel": "1.0.0",
+          "Messages": "1.0.0"
         }
+      },
+      "Messages/1.0.0": {
+        "type": "project"
       }
     }
   },
@@ -7111,6 +7115,10 @@
     "Infrastructure/1.0.0": {
       "type": "project",
       "msbuildProject": "../../Infrastructure/Infrastructure.csproj"
+    },
+    "Messages/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../../Messages/Messages.csproj"
     }
   },
   "projectFileDependencyGroups": {
