@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 using NLog;
 
 namespace Infrastructure.Messages
 {
-    public class MessageTypeProvider : IMessagetTypeProvider
+    public class MessageTypeRepository : IMessageTypeRepository
     {
         private const string CommandSufix = "Command";
 
@@ -14,20 +16,31 @@ namespace Infrastructure.Messages
 
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
+        private readonly IMessageTypesFinder messageTypesFinder;
+
         private readonly ConcurrentDictionary<string, Type> typeMappings =
             new ConcurrentDictionary<string, Type>(StringComparer.InvariantCultureIgnoreCase);
 
-        public MessageTypeProvider(Type[] types)
+        public MessageTypeRepository(IMessageTypesFinder messageTypesFinder, params Assembly[] assemblies)
         {
-            if (types == null)
+            if (messageTypesFinder == null)
             {
-                throw new ArgumentNullException(nameof(types));
+                throw new ArgumentNullException(nameof(messageTypesFinder));
             }
 
-            if (types.Length == 0)
+            if (assemblies == null)
             {
-                throw new ArgumentException("Value cannot be an empty collection.", nameof(types));
+                throw new ArgumentNullException(nameof(assemblies));
             }
+
+            this.messageTypesFinder = messageTypesFinder;
+
+            Type[] types =
+                assemblies.SelectMany(
+                    i =>
+                        this.messageTypesFinder.GetCommandTypes(i)
+                            .Union(this.messageTypesFinder.GetEventTypes(i))
+                            .Union(this.messageTypesFinder.GetQueryTypes(i))).ToArray();
 
             this.InitMappings(types);
         }

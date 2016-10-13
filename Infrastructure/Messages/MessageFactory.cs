@@ -12,22 +12,22 @@ namespace Infrastructure.Messages
 
         private readonly IMapper mapper;
 
-        private readonly IMessagetTypeProvider messagetTypeProvider;
+        private readonly IMessageTypeRepository messageTypeRepository;
 
-        public MessageFactory(IMapper mapper, IMessagetTypeProvider messagetTypeProvider)
+        public MessageFactory(IMapper mapper, IMessageTypeRepository messageTypeRepository)
         {
             if (mapper == null)
             {
                 throw new ArgumentNullException(nameof(mapper));
             }
 
-            if (messagetTypeProvider == null)
+            if (messageTypeRepository == null)
             {
-                throw new ArgumentNullException(nameof(messagetTypeProvider));
+                throw new ArgumentNullException(nameof(messageTypeRepository));
             }
 
             this.mapper = mapper;
-            this.messagetTypeProvider = messagetTypeProvider;
+            this.messageTypeRepository = messageTypeRepository;
         }
 
         public dynamic CreateMessage(string name, dynamic body)
@@ -37,7 +37,7 @@ namespace Infrastructure.Messages
                 Logger.Debug("Create request '{0}'", name);
             }
 
-            return this.mapper.Map(body, body.GetType(), this.messagetTypeProvider.GetType(name));
+            return this.mapper.Map(body, body.GetType(), this.messageTypeRepository.GetType(name));
         }
     }
 }

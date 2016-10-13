@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Messages
 {
-    public interface IMessagetTypeProvider
+    public interface IMessageTypeRepository
     {
         Type GetType(string name);
     }
